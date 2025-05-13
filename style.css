@@ -541,17 +541,28 @@ a{
     }
     
     #players-container, #teams-container {
+        padding: 10px 5px; 
         justify-content: center;
     }
     
     .card {
-        width: 100%;
-        max-width: 280px;
-        margin: 5px;
+        width: 85%; 
+        min-width: 250px; 
+        max-width: none; 
+        margin: 10px 5px; 
+        padding: 12px;
     }
     
     #teams-container .card {
+        width: 85%;
+        min-width: 250px;
         height: auto;
+    }
+    
+    #team-players .card {
+        width: 85%;
+        min-width: 250px;
+        max-width: none;
     }
     
     .cards {
@@ -600,11 +611,6 @@ a{
     
     #team-captain {
         font-size: 18px;
-    }
-    
-    #team-players .card {
-        width: 100%;
-        max-width: 260px;
     }
     
     .filter-btn {
@@ -681,4 +687,24 @@ a{
         font-size: 11px;
         margin: 2px;
     }
+
+    .card {
+        width: 90%; 
+        min-width: 220px;
+    }
+    
+    #teams-container .card {
+        width: 90%;
+        min-width: 220px;
+    }
+    
+    #team-players .card {
+        width: 90%;
+        min-width: 220px;
+    }
+    
+    .card {
+        padding: 10px;
+    }
+    
 }
