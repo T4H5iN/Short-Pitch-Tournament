@@ -412,14 +412,41 @@ a{
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+.page-title {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.shortcut-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.fixture-title {
+    padding-top: 80px;
+    margin-top: -80px;
+}
+
+.fixture-image {
+    width: 70%;
+    height: auto;
+    margin: 50px auto;
+    display: block;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Add this at the end of your style.css file */
-
-/* Responsive Styles for All Devices */
 @media (max-width: 1024px) {
     .header {
         width: 90%;
@@ -434,7 +461,6 @@ a{
     }
 }
 
-/* Tablet Styles */
 @media (max-width: 768px) {
     body {
         padding-top: 15px;
@@ -522,9 +548,29 @@ a{
         margin-left: 10px;
         height: 240px;
     }
+
+    .page-title {
+        margin-top: 80px;
+    }
+    
+    .shortcut-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .fixture-image {
+        width: 90%;
+        margin: 30px auto;
+    }
+    
+    .section-title {
+        margin-top: 30px;
+    }
 }
 
-/* Mobile Styles */
 @media (max-width: 576px) {
     .header {
         gap: 10px;
@@ -623,9 +669,34 @@ a{
         padding: 8px 15px;
         font-size: 12px;
     }
+
+    .page-title {
+        margin-top: 70px;
+        font-size: 24px;
+    }
+    
+    .shortcut-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .fixture-image {
+        width: 95%;
+        margin: 20px auto;
+    }
+    
+    .section-title {
+        font-size: 22px;
+        margin-top: 25px;
+    }
+    
+    .fixture-title {
+        padding-top: 60px;
+        margin-top: -60px;
+    }
 }
 
-/* Small Mobile Styles */
 @media (max-width: 375px) {
     .header {
         font-size: 12px;
@@ -707,4 +778,17 @@ a{
         padding: 10px;
     }
     
+    .page-title {
+        margin-top: 60px;
+        font-size: 22px;
+    }
+    
+    .fixture-image {
+        width: 98%;
+        margin: 15px auto;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
 }
