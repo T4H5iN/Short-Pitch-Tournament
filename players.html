@@ -18,6 +18,38 @@
 
     <section id="players-section">
         <h1 style="text-align: center; margin-top: 100px;">Players</h1>
+        <div id="filter-container" style="text-align: center; margin-bottom: 20px;">
+            <input type="text" id="search-bar" placeholder="Search by name">
+        </div>
+
+        <div id="batch-buttons" style="text-align: center; margin-bottom: 20px;">
+            <button class="filter-btn" data-batch="all">All Batches</button>
+            <button class="filter-btn" data-batch="ICT 3">ICT 3</button>
+            <button class="filter-btn" data-batch="ICT 4">ICT 4</button>
+            <button class="filter-btn" data-batch="ICT 5">ICT 5</button>
+            <button class="filter-btn" data-batch="ICT 6">ICT 6</button>
+            <button class="filter-btn" data-batch="ICT 7">ICT 7</button>
+            <button class="filter-btn" data-batch="ICT 8">ICT 8</button>
+            <button class="filter-btn" data-batch="ICT 9">ICT 9</button>
+            <button class="filter-btn" data-batch="BICE 2025">BICE 2025</button>
+        </div>
+
+        <div id="role-buttons" style="text-align: center; margin-bottom: 20px;">
+            <button class="filter-btn" data-role="all">All Roles</button>
+            <button class="filter-btn" data-role="All-Rounder">All-Rounder</button>
+            <button class="filter-btn" data-role="Batsman">Batsman</button>
+            <button class="filter-btn" data-role="Bowler">Bowler</button>
+            <button class="filter-btn" data-role="Right-handed">Right-handed</button>
+            <button class="filter-btn" data-role="Left-handed">Left-handed</button>
+            <button class="filter-btn" data-role="Right-arm spin">Right-arm spin</button>
+            <button class="filter-btn" data-role="Right-arm fast">Right-arm fast</button>
+            <button class="filter-btn" data-role="Left-arm spin">Left-arm spin</button>
+            <button class="filter-btn" data-role="Left-arm fast">Left-arm fast</button>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button id="clear-filters" style="padding: 10px;">Clear Filters</button>
+        </div>
         <div id="players-container" style="padding: 50px 180px 50px 180px;"></div>
     </section>
 

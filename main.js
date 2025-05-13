@@ -1,33 +1,94 @@
 window.onload = function () {
     const pc = document.getElementById('players-container');
     if (pc) {
-        players.forEach(p => {
-            pc.innerHTML += `
-            <div class="card">
-                <img src="${p.image}" alt="${p.name}">
-                <h3>${p.name}</h3>
-                <p>Age: ${p.age}</p>
-                <p>Role: ${p.role}</p>
-                <p>Team: ${p.team}</p>
-            </div>`;
+        const searchBar = document.getElementById('search-bar');
+        const batchButtons = document.querySelectorAll('#batch-buttons .filter-btn');
+        const roleButtons = document.querySelectorAll('#role-buttons .filter-btn');
+        const clearFilters = document.getElementById('clear-filters');
+
+        let selectedBatch = 'all';
+        let selectedRole = 'all';
+
+        function renderPlayers(filteredPlayers) {
+            pc.innerHTML = '';
+            filteredPlayers.forEach(p => {
+                pc.innerHTML += `
+                <div class="card">
+                    <img src="${p.image}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <p>Batch: ${p.batch}</p>
+                    <p>${p.role}</p>
+                    ${p.bat !== "Not applicable" ? `<p>${p.bat} batsman</p>` : ""}
+                    ${p.ball !== "Not applicable" ? `<p>${p.ball} bowler</p>` : ""}
+                    <p>Team: ${p.team || 'Unassigned'}</p>
+                </div>`;
+            });
+        }
+
+        renderPlayers(players);
+
+        searchBar.addEventListener('input', () => {
+            const searchValue = searchBar.value.toLowerCase();
+            const filteredPlayers = players.filter(p => 
+                p.name.toLowerCase().includes(searchValue) &&
+                (selectedBatch === 'all' || p.batch === selectedBatch) &&
+                (selectedRole === 'all' || 
+                    (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole)))
+            );
+            renderPlayers(filteredPlayers);
+        });
+
+        batchButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                batchButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                selectedBatch = button.getAttribute('data-batch');
+                const filteredPlayers = players.filter(p => 
+                    (selectedBatch === 'all' || p.batch === selectedBatch) &&
+                    (selectedRole === 'all' || 
+                        (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole)))
+                );
+                renderPlayers(filteredPlayers);
+            });
+        });
+
+        roleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                roleButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                selectedRole = button.getAttribute('data-role');
+                const filteredPlayers = players.filter(p => 
+                    (selectedBatch === 'all' || p.batch === selectedBatch) &&
+                    (selectedRole === 'all' || 
+                        (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole)))
+                );
+                renderPlayers(filteredPlayers);
+            });
+        });
+
+        clearFilters.addEventListener('click', () => {
+            searchBar.value = '';
+            selectedBatch = 'all';
+            selectedRole = 'all';
+            renderPlayers(players);
         });
     }
 
     const tc = document.getElementById('teams-container');
-    const teamModal = document.getElementById('team-modal');
-    const modalClose = document.getElementById('modal-close');
-    const teamLogo = document.getElementById('team-logo');
-    const teamCaptain = document.getElementById('team-captain');
-    const teamPlayers = document.getElementById('team-players');
-
     if (tc) {
+        const teamModal = document.getElementById('team-modal');
+        const modalClose = document.getElementById('modal-close');
+        const teamLogo = document.getElementById('team-logo');
+        const teamCaptain = document.getElementById('team-captain');
+        const teamPlayers = document.getElementById('team-players');
+
         teams.forEach(t => {
             const teamCard = document.createElement('div');
             teamCard.classList.add('card');
             teamCard.innerHTML = `
                 <img src="${t.logo}" alt="${t.name}">
-                <h3>${t.name}</h3>
-                <p>Captain: ${t.captain}</p>
+                <h3>${t.owner}</h3>
             `;
         
             teamCard.addEventListener('click', () => {
@@ -47,8 +108,9 @@ window.onload = function () {
                         playerCard.innerHTML = `
                             <img src="${player.image}" alt="${player.name}">
                             <h3>${player.name}</h3>
-                            <p>Age: ${player.age}</p>
-                            <p>Role: ${player.role}</p>
+                            <p>${player.role}</p>
+                            ${player.bat !== "Not applicable" ? `<p>${player.bat} batsman</p>` : ""}
+                            ${player.ball !== "Not applicable" ? `<p>${player.ball} bowler</p>` : ""}
                         `;
                         teamPlayers.appendChild(playerCard);
                     }

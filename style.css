@@ -41,8 +41,8 @@ a{
 }
 
 #players-container, #teams-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     margin: 0 auto;
@@ -51,6 +51,7 @@ a{
 
 #teams-container .card{
     cursor: pointer;
+    height: 230px;
 }
 
 .card {
@@ -60,7 +61,8 @@ a{
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     width: 200px;
-    height: 270px;
+    height: 350px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,7 +77,7 @@ a{
 .card img {
     width: 100%;
     height: 150px;
-    object-fit: cover;
+    object-fit: scale-down;
     border-radius: 8px;
     margin-bottom: 10px;
 }
@@ -248,7 +250,7 @@ a{
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     margin-top: 40px;
     margin: auto;
-    width: 60%;
+    width: 80%;
     animation: fadeIn 0.4s ease-in-out;
 }
 
@@ -281,13 +283,14 @@ a{
 #team-players {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 
 #team-players .card {
     margin-bottom: 30px;
     margin-left: 20px;
-    height: 250px;
+    height: 270px;
 }
 
 #team-players .card:hover{
@@ -345,18 +348,104 @@ a{
     color: #000;
 }
 
+#search-bar {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 12px 20px;
+    width: 800px;
+    border: 2px solid #211d4f;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#search-bar:focus {
+    border-color: #3e3b88;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.filter-btn {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #211d4f;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: #211d4f;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn:hover {
+    background-color: #211d4f;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.filter-btn.active {
+    background-color: #3e3b88;
+    color: #ffffff;
+    border-color: #3e3b88; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+#clear-filters {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: 2px solid #ff4d4d;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: #ff4d4d;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#clear-filters:hover {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .header {
+        flex-wrap: wrap;
+        gap: 20px;
+        font-size: 15px;
         width: 90%;
         left: 5%;
         right: 5%;
-        gap: 30px;
-        font-size: 16px;
+        position: unset;
+    }
+
+    #players-container,
+    #teams-container,
+    #team-players {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        justify-items: center;
+    }
+
+    .card {
+        width: 90%; 
+        height: auto; 
+    }
+
+    .cards {
+        width: 90%;
+        height: auto;
+        font-size: 22px;
     }
 
     #team-details {
@@ -372,46 +461,39 @@ a{
         text-align: center;
     }
 
-    #team-captain {
-        text-align: center;
-        margin-top: 10px;
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    #players-container,
-    #teams-container,
-    #team-players {
-        grid-template-columns: 1fr !important;
-        display: grid !important;
-        justify-items: center;
-    }
-
-    .card {
-        width: 90% !important;
-        height: auto;
-    }
-
-    .cards {
-        width: 90%;
-        height: auto;
-        font-size: 22px;
-    }
-
-    .header {
-        flex-wrap: wrap;
-        gap: 20px;
-        font-size: 15px;
-    }
-
     #team-logo {
         width: 120px;
         height: 120px;
     }
 
     #team-captain {
-        font-size: 18px;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    .points-table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .points-table th,
+    .points-table td {
+        padding: 10px;
+    }
+
+    .match-card {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .team strong {
+        font-size: 16px;
+    }
+
+    .team p,
+    .teams span {
+        font-size: 14px;
     }
 }
 
@@ -420,18 +502,11 @@ a{
         font-size: 14px;
         padding: 10px;
         gap: 10px;
+        position: unset;
     }
 
     .match-card {
-        padding: 15px;
-    }
-
-    .team strong {
-        font-size: 16px;
-    }
-
-    .team p, .teams span {
-        font-size: 14px;
+        padding: 10px;
     }
 
     #team-logo {
@@ -445,5 +520,14 @@ a{
 
     .card img {
         height: 130px;
+    }
+
+    .points-table {
+        font-size: 12px;
+    }
+
+    .points-table th,
+    .points-table td {
+        padding: 8px;
     }
 }
