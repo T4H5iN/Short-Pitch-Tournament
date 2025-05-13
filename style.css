@@ -554,7 +554,7 @@ a{
     }
     
     .shortcut-container {
-        flex-direction: row;
+        display: flex;
         flex-wrap: wrap;
         gap: 15px;
         margin-top: 30px;
@@ -676,7 +676,8 @@ a{
     }
     
     .shortcut-container {
-        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 15px;
     }
