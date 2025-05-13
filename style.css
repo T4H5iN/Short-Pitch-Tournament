@@ -554,8 +554,6 @@ a{
     }
     
     .shortcut-container {
-        display: flex;
-        flex-wrap: wrap;
         gap: 15px;
         margin-top: 30px;
         margin-bottom: 30px;
@@ -568,6 +566,10 @@ a{
     
     .section-title {
         margin-top: 30px;
+    }
+
+    #results-container {
+        width: fit-content;
     }
 }
 
@@ -609,13 +611,6 @@ a{
         width: 85%;
         min-width: 250px;
         max-width: none;
-    }
-    
-    .cards {
-        width: 100%;
-        max-width: 280px;
-        height: 110px;
-        font-size: 20px;
     }
     
     .points-table {
@@ -676,10 +671,17 @@ a{
     }
     
     .shortcut-container {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+        flex-direction: column; 
+        width: 100%;
         gap: 15px;
+        margin: 100px auto;
+        margin-bottom: 30px;
+    }
+    
+    .cards {
+        width: 100%; 
+        max-width: 280px;
+        margin: 0 auto; 
     }
     
     .fixture-image {
@@ -695,6 +697,10 @@ a{
     .fixture-title {
         padding-top: 60px;
         margin-top: -60px;
+    }
+
+    #results-container {
+        width: fit-content;
     }
 }
 
@@ -791,5 +797,9 @@ a{
     
     .section-title {
         font-size: 20px;
+    }
+
+    #results-container {
+        width: fit-content;
     }
 }
