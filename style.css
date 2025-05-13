@@ -417,117 +417,268 @@ a{
     to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 768px) {
+/* Add this at the end of your style.css file */
+
+/* Responsive Styles for All Devices */
+@media (max-width: 1024px) {
     .header {
-        flex-wrap: wrap;
-        gap: 20px;
-        font-size: 15px;
         width: 90%;
         left: 5%;
         right: 5%;
-        position: unset;
+        gap: 30px;
     }
+    
+    #search-bar {
+        width: 80%;
+        max-width: 600px;
+    }
+}
 
-    #players-container,
-    #teams-container,
-    #team-players {
-        display: grid;
-        grid-template-columns: 1fr;
+/* Tablet Styles */
+@media (max-width: 768px) {
+    body {
+        padding-top: 15px;
+    }
+    
+    .header {
+        width: 95%;
+        left: 2.5%;
+        right: 2.5%;
         gap: 15px;
-        justify-items: center;
-    }
-
-    .card {
-        width: 90%; 
-        height: auto; 
-    }
-
-    .cards {
-        width: 90%;
+        font-size: 15px;
         height: auto;
+        padding: 10px 0;
+        flex-wrap: wrap;
+    }
+    
+    #search-bar {
+        width: 90%;
+        max-width: 500px;
+        padding: 10px 15px;
+    }
+    
+    #players-container, #teams-container {
+        padding: 20px 10px;
+    }
+    
+    .card {
+        width: 180px;
+        height: auto;
+        min-height: 300px;
+    }
+    
+    #teams-container .card {
+        height: 200px;
+    }
+    
+    .cards {
+        width: 180px;
+        height: 130px;
         font-size: 22px;
     }
-
-    #team-details {
+    
+    .points-table {
+        width: 95%;
+        font-size: 14px;
+    }
+    
+    .points-table th,
+    .points-table td {
+        padding: 10px;
+    }
+    
+    .match-card {
+        padding: 15px;
+    }
+    
+    .team strong {
+        font-size: 16px;
+    }
+    
+    .team p, .teams span {
+        font-size: 14px;
+    }
+    
+    .modal-content {
         width: 90%;
-        margin: 20px auto;
         padding: 20px;
     }
-
+    
     #team-header {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        text-align: center;
+        padding: 15px;
     }
-
+    
     #team-logo {
         width: 120px;
         height: 120px;
     }
-
+    
     #team-captain {
-        text-align: center;
-        margin-top: 10px;
         font-size: 20px;
+        text-align: center;
     }
-
-    .points-table {
-        width: 100%;
-        font-size: 14px;
-    }
-
-    .points-table th,
-    .points-table td {
-        padding: 10px;
-    }
-
-    .match-card {
-        padding: 15px;
-        font-size: 14px;
-    }
-
-    .team strong {
-        font-size: 16px;
-    }
-
-    .team p,
-    .teams span {
-        font-size: 14px;
+    
+    #team-players .card {
+        margin-left: 10px;
+        height: 240px;
     }
 }
 
-@media (max-width: 480px) {
+/* Mobile Styles */
+@media (max-width: 576px) {
     .header {
-        font-size: 14px;
-        padding: 10px;
         gap: 10px;
-        position: unset;
+        font-size: 14px;
+        padding: 8px 0;
     }
-
+    
+    .header a {
+        padding: 5px 8px;
+    }
+    
+    #players-section h1, #teams-section h1 {
+        margin-top: 80px;
+    }
+    
+    #players-container, #teams-container {
+        justify-content: center;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 280px;
+        margin: 5px;
+    }
+    
+    #teams-container .card {
+        height: auto;
+    }
+    
+    .cards {
+        width: 100%;
+        max-width: 280px;
+        height: 110px;
+        font-size: 20px;
+    }
+    
+    .points-table {
+        font-size: 12px;
+    }
+    
+    .points-table th,
+    .points-table td {
+        padding: 8px 5px;
+    }
+    
     .match-card {
-        padding: 10px;
+        padding: 12px;
     }
-
+    
+    .teams {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .team {
+        width: 100%;
+    }
+    
+    .teams span {
+        display: block;
+        margin: 10px 0;
+    }
+    
+    #team-header {
+        flex-direction: column;
+        padding: 15px 10px;
+    }
+    
     #team-logo {
         width: 100px;
         height: 100px;
     }
-
+    
     #team-captain {
-        font-size: 16px;
+        font-size: 18px;
     }
-
-    .card img {
-        height: 130px;
+    
+    #team-players .card {
+        width: 100%;
+        max-width: 260px;
     }
-
-    .points-table {
+    
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+        margin: 3px;
+    }
+    
+    #clear-filters {
+        padding: 8px 15px;
         font-size: 12px;
     }
+}
 
+/* Small Mobile Styles */
+@media (max-width: 375px) {
+    .header {
+        font-size: 12px;
+    }
+    
+    .header a {
+        padding: 4px 6px;
+    }
+    
+    #search-bar {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .card img {
+        height: 120px;
+    }
+    
+    .card h3 {
+        font-size: 16px;
+    }
+    
+    .card p {
+        font-size: 12px;
+    }
+    
+    .points-table {
+        font-size: 10px;
+    }
+    
     .points-table th,
     .points-table td {
-        padding: 8px;
+        padding: 6px 3px;
+    }
+    
+    .match-card h3 {
+        font-size: 16px;
+    }
+    
+    .team strong {
+        font-size: 14px;
+    }
+    
+    .team p, .teams span {
+        font-size: 12px;
+    }
+    
+    .result-text {
+        font-size: 14px;
+    }
+    
+    #team-players .card {
+        width: 100%;
+        max-width: 220px;
+    }
+    
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+        margin: 2px;
     }
 }
