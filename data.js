@@ -261,9 +261,9 @@ const players = [
     },
     {
         id: 27,
-        name: "Abrar Labib",
-        batch: "ICT 9",
-        role: "Batsman",
+        name: "Pious",
+        batch: "ICT 8",
+        role: "All-Rounder",
         team: null,
         bat: "Right-handed",
         ball: "Right-arm spin",
@@ -381,12 +381,12 @@ const players = [
     },
     {
         id: 39,
-        name: "Safil Sarker",
-        batch: "ICT 9",
-        role: "All-Rounder",
+        name: "Tanvir",
+        batch: "ICT 6",
+        role: "Batsman",
         team: null,
         bat: "Right-handed",
-        ball: "Right-arm spin",
+        ball: "Not applicable",
         image: "image/players/image.png"
     },
     {
@@ -431,11 +431,11 @@ const players = [
     },
     {
         id: 44,
-        name: "Ameer Sohail",
-        batch: "ICT 8",
-        role: "All-Rounder",
+        name: "Santo",
+        batch: "ICT 6",
+        role: "Batsman",
         team: null,
-        bat: "Right-handed",
+        bat: "Left-handed",
         ball: "Right-arm spin",
         image: "image/players/image.png"
     },
@@ -583,6 +583,16 @@ const players = [
         id: 59,
         name: "Shaikh",
         batch: "ICT 7",
+        role: "All-Rounder",
+        team: null,
+        bat: "Right-handed",
+        ball: "Right-arm fast",
+        image: "image/players/image.png"
+    },
+    {
+        id: 60,
+        name: "Samiul Hossen Sarkar Santo",
+        batch: "ICT 8",
         role: "All-Rounder",
         team: null,
         bat: "Right-handed",
