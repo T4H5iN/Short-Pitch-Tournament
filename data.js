@@ -17,7 +17,7 @@ const players = [
         team: null,
         bat: "Right-handed",
         ball: "Not applicable",
-        image: "image/players/image.png"
+        image: "image/teams/sami.jpg"
     },
     {
         id: 3,
@@ -87,7 +87,7 @@ const players = [
         team: null,
         bat: "Right-handed",
         ball: "Right-arm spin",
-        image: "image/players/image.png"
+        image: "image/teams/Mehedi.jpg"
     },
     {
         id: 10,
@@ -207,7 +207,7 @@ const players = [
         team: null,
         bat: "Left-handed",
         ball: "Left-arm fast",
-        image: "image/players/image.png"
+        image: "image/teams/Ridoy.jpg"
     },
     {
         id: 22,
@@ -567,7 +567,7 @@ const players = [
         team: null,
         bat: "Right-handed",
         ball: "Not applicable",
-        image: "image/players/image.png"
+        image: "image/teams/Jayed_arif.jpg"
     },
     {
         id: 58,
@@ -577,7 +577,7 @@ const players = [
         team: null,
         bat: "Right-handed",
         ball: "Not applicable",
-        image: "image/players/image.png"
+        image: "image/teams/Saber.jpg"
     },
     {
         id: 59,
@@ -587,7 +587,7 @@ const players = [
         team: null,
         bat: "Right-handed",
         ball: "Right-arm fast",
-        image: "image/players/image.png"
+        image: "image/teams/Shaikh.jpg"
     },
     {
         id: 60,
@@ -604,42 +604,42 @@ const players = [
 const teams = [
     {
         //name: "Strikers",
-        logo: "image/players/image.png",
+        logo: "image/teams/sami.jpg",
         owner: "Shaheed Al Sami",
         captain: "Shaheed Al Sami",
         players: [2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
     },
     {
         //name: "Warriors",
-        logo: "image/players/image.png",
+        logo: "image/teams/Mehedi.jpg",
         owner: "Mehedi",
         captain: "",
         players: []
     },
     {
         //name: "Warriors",
-        logo: "image/players/image.png",
+        logo: "image/teams/Ridoy.jpg",
         owner: "Md.Mehedi Hasan Ridoy",
         captain: "",
         players: []
     },
     {
         //name: "Warriors",
-        logo: "image/players/image.png",
+        logo: "image/teams/Jayed_arif.jpg",
         owner: "Jayed Arif",
         captain: "",
         players: []
     },
     {
         //name: "Warriors",
-        logo: "image/players/image.png",
+        logo: "image/teams/Saber.jpg",
         owner: "Saber",
         captain: "",
         players: []
     },
     {
         //name: "Warriors",
-        logo: "image/players/image.png",
+        logo: "image/teams/Shaikh.jpg",
         owner: "Shaikh",
         captain: "",
         players: []
