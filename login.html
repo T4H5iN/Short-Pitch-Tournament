@@ -6,6 +6,10 @@
     <title>Admin Login</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        #password{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
         .login-container {
             display: flex;
             justify-content: center;
@@ -73,12 +77,20 @@
         <a href="admin.html">ADMIN</a>
     </div>
 
-    <div class="login-container">
-        <form id="admin-login" class="login-form">
-            <h2>Admin Login</h2>
-            <input type="password" id="password" placeholder="Enter admin password" required />
-            <button type="submit">Login</button>
-        </form>
+    <div class="content-wrapper">
+        <div class="login-container">
+            <form id="admin-login" class="login-form">
+                <h2>Admin Login</h2>
+                <input type="password" id="password" placeholder="Enter admin password" required />
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="footer-content">
+            <p>Made with ❤️ by MDTI</p>
+        </div>
     </div>
 
     <script>

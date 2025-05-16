@@ -13,5 +13,14 @@
 </head>
 <body>
     <h1>Welcome to admin page</h1>
+    <button onclick="logout()">Logout</button>
+
+    <script>
+    function logout() {
+        localStorage.removeItem("isAdmin");
+        location.href = "/login.html";
+    }
+    </script>
+
 </body>
 </html>

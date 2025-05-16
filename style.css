@@ -445,6 +445,28 @@ a{
     display: block;
 }
 
+.footer {
+    background-color: #211d4f;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 14px;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -809,4 +831,31 @@ a{
     #results-container {
         width: fit-content;
     }
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    flex: 1 0 auto; 
+    padding-bottom: 30px; 
+}
+
+.footer {
+    flex-shrink: 0; 
+    background-color: #211d4f;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; 
 }
