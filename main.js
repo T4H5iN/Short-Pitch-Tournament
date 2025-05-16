@@ -1,4 +1,12 @@
 window.onload = function () {
+    if (playersData.length === 0) {
+        document.addEventListener('playersLoaded', initializeUI);
+    } else {
+        initializeUI();
+    }
+};
+
+function initializeUI() {
     const pc = document.getElementById('players-container');
     if (pc) {
         const searchBar = document.getElementById('search-bar');
@@ -14,7 +22,7 @@ window.onload = function () {
             filteredPlayers.forEach(p => {
                 pc.innerHTML += `
                 <div class="card">
-                    <img src="${p.image}" alt="${p.name}">
+                    <img src="${p.image}" alt="${p.name}" onerror="this.src='image/players/image.png'">
                     <h3>${p.name}</h3>
                     <p>Batch: ${p.batch}</p>
                     <p>${p.role}</p>
@@ -25,11 +33,11 @@ window.onload = function () {
             });
         }
 
-        renderPlayers(players);
+        renderPlayers(playersData);
 
         searchBar.addEventListener('input', () => {
             const searchValue = searchBar.value.toLowerCase();
-            const filteredPlayers = players.filter(p => 
+            const filteredPlayers = playersData.filter(p => 
                 p.name.toLowerCase().includes(searchValue) &&
                 (selectedBatch === 'all' || p.batch === selectedBatch) &&
                 (selectedRole === 'all' || 
@@ -87,7 +95,7 @@ window.onload = function () {
             const teamCard = document.createElement('div');
             teamCard.classList.add('card');
             teamCard.innerHTML = `
-                <img src="${t.logo}" alt="${t.name}">
+                <img src="${t.logo}" alt="${t.name || t.owner}">
                 <h3>${t.owner}</h3>
             `;
         
@@ -98,7 +106,7 @@ window.onload = function () {
                 teamPlayers.innerHTML = '';
         
                 t.players.forEach(id => {
-                    const player = players.find(p => p.id === id);
+                    const player = playersData.find(p => p.id === id);
                     if (player) {
                         const playerCard = document.createElement('div');
                         playerCard.classList.add('card');
@@ -106,7 +114,7 @@ window.onload = function () {
                             playerCard.classList.add('captain-highlight');
                         }
                         playerCard.innerHTML = `
-                            <img src="${player.image}" alt="${player.name}">
+                            <img src="${player.image}" alt="${player.name}" onerror="this.src='image/players/image.png'">
                             <h3>${player.name}</h3>
                             <p>${player.role}</p>
                             ${player.bat !== "Not applicable" ? `<p>${player.bat} batsman</p>` : ""}

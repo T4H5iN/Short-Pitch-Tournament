@@ -1,0 +1,542 @@
+[
+    {
+        "ID": "1",
+        "Name": "Suprio Chattapadhya Raj",
+        "UID": "23549009006",
+        "Batch": "ICT 9",
+        "Role  ": "Batsman, All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "2",
+        "Name": "Shaheed Al Sami",
+        "UID": "23549009016",
+        "Batch": "ICT 9",
+        "Role  ": "Batsman, Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "3",
+        "Name": "Md. Tanvir",
+        "UID": "2154901033",
+        "Batch": "ICT 7",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "4",
+        "Name": "Rafat Hossan ",
+        "UID": "23549009102",
+        "Batch": "ICT 9",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "5",
+        "Name": "Noman Siddiki",
+        "UID": "2254901070",
+        "Batch": "ICT 8",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "6",
+        "Name": "Md Nasimuzzaman Emon ",
+        "UID": "2254901045",
+        "Batch": "ICT 8",
+        "Role  ": "Batsman",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "7",
+        "Name": "Md.Nazmus Sakib Siam",
+        "UID": "23549009053",
+        "Batch": "ICT 9",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "8",
+        "Name": "MD. Yusuf Ali Saikot ",
+        "UID": "25549011078",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "9",
+        "Name": "Mehedi",
+        "UID": "2054901098",
+        "Batch": "ICT 6",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "10",
+        "Name": "Tanvir ( JOY )",
+        "UID": "23549009085",
+        "Batch": "ICT 9",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "11",
+        "Name": "Mohiuddin Mukshit Farhan ",
+        "UID": "25549011013",
+        "Batch": "BICE 2025",
+        "Role  ": "Bowler",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "12",
+        "Name": "Zarif Fahad",
+        "UID": "25549011049",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "13",
+        "Name": "Md.Rakibul Hossain ",
+        "UID": "25549011014",
+        "Batch": "BICE 2025",
+        "Role  ": "Batsman, Bowler, All-Rounder, Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "14",
+        "Name": "Nabil Mahmud ",
+        "UID": "",
+        "Batch": "BICE 2025",
+        "Role  ": "Batsman, Bowler",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "15",
+        "Name": "Ashfak Ahmed Rohan ",
+        "UID": "25549011083",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "16",
+        "Name": "Abdullah Al Mueed",
+        "UID": "17511002",
+        "Batch": "ICT 3",
+        "Role  ": "All-Rounder",
+        "Batting": "Left-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "17",
+        "Name": " Jawad mustavi rafeed",
+        "UID": "25549011123",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Left-handed",
+        "Bowling": "Left-arm spin"
+    },
+    {
+        "ID": "18",
+        "Name": "Abid Faysal ",
+        "UID": "25549011091",
+        "Batch": "BICE 2025",
+        "Role  ": "Bowler",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "19",
+        "Name": "Azmi",
+        "UID": "2254901039",
+        "Batch": "ICT 8",
+        "Role  ": "Batsman, Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "20",
+        "Name": "Md.Shairzil Mia",
+        "UID": "2254901059",
+        "Batch": "ICT 8",
+        "Role  ": "Bowler",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "21",
+        "Name": "Md.Mehedi Hasan Ridoy",
+        "UID": "23549009048",
+        "Batch": "ICT 9",
+        "Role  ": "All-Rounder",
+        "Batting": "Left-handed",
+        "Bowling": "Left-arm fast"
+    },
+    {
+        "ID": "22",
+        "Name": "Md Mahbub E Rabbani ",
+        "UID": "2254901122",
+        "Batch": "ICT 8",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "23",
+        "Name": "Nazmus Sakib ",
+        "UID": "25549011102",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "24",
+        "Name": "S.M.Mohammad Ali",
+        "UID": "25549011035",
+        "Batch": "BICE 2025",
+        "Role  ": "Batsman, All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "25",
+        "Name": "Md. Araf Al Zaber",
+        "UID": "25549011067",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "26",
+        "Name": "Abdullah Al Masum ",
+        "UID": "23549009019",
+        "Batch": "ICT 9",
+        "Role  ": "All-Rounder, Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "27",
+        "Name": "Ishtiak Haque Sadman",
+        "UID": "23549009076",
+        "Batch": "ICT 9",
+        "Role  ": "All-Rounder, Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "28",
+        "Name": "Tanvir",
+        "UID": "25549011064",
+        "Batch": "BICE 2025",
+        "Role  ": "Batsman, All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "29",
+        "Name": "Md. Nazmul Hasan ",
+        "UID": "25549011139",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "30",
+        "Name": "MD.Mehedi Hasan",
+        "UID": "2254901086",
+        "Batch": "ICT 8",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "31",
+        "Name": "Mowdud Ibne Zahir Labib",
+        "UID": "25549011011",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Left-arm spin"
+    },
+    {
+        "ID": "32",
+        "Name": "Md Tanzim Hossain (Ayon)",
+        "UID": "17511027",
+        "Batch": "ICT 3",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "33",
+        "Name": "Md Mahidul Islam ",
+        "UID": "17511022",
+        "Batch": "ICT 3",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "34",
+        "Name": "Shakil Rabbi ",
+        "UID": "2054901096",
+        "Batch": "ICT 6",
+        "Role  ": "Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "35",
+        "Name": "Nabil",
+        "UID": "23549009042",
+        "Batch": "ICT 9",
+        "Role  ": "Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "36",
+        "Name": "MEHEDI HASAN MISHU",
+        "UID": "19511096",
+        "Batch": "ICT 5",
+        "Role  ": "Batsman, Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "37",
+        "Name": "A. K. M. Mohaiminul Islam",
+        "UID": "19511066",
+        "Batch": "ICT 5",
+        "Role  ": "Batsman",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "38",
+        "Name": "Ahmed Foysal ",
+        "UID": "",
+        "Batch": "ICT 5",
+        "Role  ": "All-Rounder",
+        "Batting": "Left-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "39",
+        "Name": "Rashedul Islam Tasif",
+        "UID": "23549009100",
+        "Batch": "ICT 9",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "40",
+        "Name": "Raian Alif",
+        "UID": "2254901035",
+        "Batch": "ICT 8",
+        "Role  ": "Batsman, Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "41",
+        "Name": "Omi ",
+        "UID": "2254901093",
+        "Batch": "ICT 8",
+        "Role  ": "Batsman",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "42",
+        "Name": "MD. Mahadi Hasan Shakib",
+        "UID": "2254901020",
+        "Batch": "ICT 8",
+        "Role  ": "All-Rounder, Wicket-Keeper",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "43",
+        "Name": "MD.Rasheduzzaman Imran",
+        "UID": "2254901113",
+        "Batch": "ICT 8",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "44",
+        "Name": "Mohammod Hasanat ",
+        "UID": "18511094",
+        "Batch": "ICT 4",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "45",
+        "Name": "Rifat",
+        "UID": "2054901062",
+        "Batch": "ICT 6",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "46",
+        "Name": "Shahriar Ifty",
+        "UID": "18511073",
+        "Batch": "ICT 4",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "47",
+        "Name": "Jakiul Ahashan Peyal ",
+        "UID": "24549010044",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm fast"
+    },
+    {
+        "ID": "48",
+        "Name": "Mashnoon Ali Rajin ",
+        "UID": "25549011117",
+        "Batch": "BICE 2025",
+        "Role  ": "Bowler",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "49",
+        "Name": "Md Jahid Hasan Ridoy",
+        "UID": "19511056",
+        "Batch": "ICT 5",
+        "Role  ": "Bowler",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "50",
+        "Name": "Jamil",
+        "UID": "2154901115",
+        "Batch": "ICT 7",
+        "Role  ": "Batsman",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "51",
+        "Name": "Shurov Kabir",
+        "UID": "25549011074",
+        "Batch": "BICE 2025",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "52",
+        "Name": "Mouno",
+        "UID": "17511032",
+        "Batch": "ICT 3",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "53",
+        "Name": "S.M.Nabil Mashrafi",
+        "UID": "23549009080",
+        "Batch": "ICT 9",
+        "Role  ": "Batsman, Bowler",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "54",
+        "Name": "Santo",
+        "UID": "2054901053",
+        "Batch": "ICT 6",
+        "Role  ": "Batsman",
+        "Batting": "Left-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "55",
+        "Name": "Tanvir",
+        "UID": "2054901012",
+        "Batch": "ICT 6",
+        "Role  ": "Batsman",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "56",
+        "Name": "Pious",
+        "UID": "2254901021",
+        "Batch": "ICT 8",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "57",
+        "Name": "Samiul Hossen Sarkar Santo ",
+        "UID": "2254901079",
+        "Batch": "ICT 8",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling": "Right-arm spin"
+    },
+    {
+        "ID": "58",
+        "Name": "Jayed Arif",
+        "UID": "Jayed_arif",
+        "Batch": "ICT 5",
+        "Role  ": "Batsman",
+        "Batting": "Right-handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "59",
+        "Name": "Saber",
+        "UID": "Saber",
+        "Batch": "ICT 5",
+        "Role  ": "Batsman",
+        "Batting": "Right-Handed",
+        "Bowling": "Not applicable"
+    },
+    {
+        "ID": "60",
+        "Name": "Shaikh",
+        "UID": "Shaikh",
+        "Batch": "ICT 7",
+        "Role  ": "All rounder",
+        "Batting": "Right-Handed",
+        "Bowling": "Right-arm fast"
+    }
+]
