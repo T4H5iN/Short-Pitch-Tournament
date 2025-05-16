@@ -13,6 +13,7 @@ fetch('players.json')
             name: player.Name.trim(),
             uid: player.UID,
             batch: player.Batch,
+            category: player.Category,
             role: player["Role  "] ? player["Role  "].trim() : "",
             team: null,
             bat: player.Batting,

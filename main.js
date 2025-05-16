@@ -12,10 +12,12 @@ function initializeUI() {
         const searchBar = document.getElementById('search-bar');
         const batchButtons = document.querySelectorAll('#batch-buttons .filter-btn');
         const roleButtons = document.querySelectorAll('#role-buttons .filter-btn');
+        const categoryButtons = document.querySelectorAll('#cat-buttons .filter-btn');
         const clearFilters = document.getElementById('clear-filters');
 
         let selectedBatch = 'all';
         let selectedRole = 'all';
+        let selectedCategory = 'all'; 
 
         function renderPlayers(filteredPlayers) {
             pc.innerHTML = '';
@@ -25,6 +27,7 @@ function initializeUI() {
                     <img src="${p.image}" alt="${p.name}" onerror="this.src='image/players/image.png'">
                     <h3>${p.name}</h3>
                     <p>Batch: ${p.batch}</p>
+                    <p>Category: ${p.category}</p>
                     <p>${p.role}</p>
                     ${p.bat !== "Not applicable" ? `<p>${p.bat} batsman</p>` : ""}
                     ${p.ball !== "Not applicable" ? `<p>${p.ball} bowler</p>` : ""}
@@ -41,7 +44,8 @@ function initializeUI() {
                 p.name.toLowerCase().includes(searchValue) &&
                 (selectedBatch === 'all' || p.batch === selectedBatch) &&
                 (selectedRole === 'all' || 
-                    (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole)))
+                    (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole))) &&
+                (selectedCategory === 'all' || p.category === selectedCategory) 
             );
             renderPlayers(filteredPlayers);
         });
@@ -52,10 +56,11 @@ function initializeUI() {
                 button.classList.add('active');
 
                 selectedBatch = button.getAttribute('data-batch');
-                const filteredPlayers = players.filter(p => 
+                const filteredPlayers = playersData.filter(p => 
                     (selectedBatch === 'all' || p.batch === selectedBatch) &&
                     (selectedRole === 'all' || 
-                        (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole)))
+                        (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole))) &&
+                    (selectedCategory === 'all' || p.category === selectedCategory) 
                 );
                 renderPlayers(filteredPlayers);
             });
@@ -65,11 +70,29 @@ function initializeUI() {
             button.addEventListener('click', () => {
                 roleButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
+                
                 selectedRole = button.getAttribute('data-role');
-                const filteredPlayers = players.filter(p => 
+                const filteredPlayers = playersData.filter(p => 
                     (selectedBatch === 'all' || p.batch === selectedBatch) &&
                     (selectedRole === 'all' || 
-                        (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole)))
+                        (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole))) &&
+                    (selectedCategory === 'all' || p.category === selectedCategory) 
+                );
+                renderPlayers(filteredPlayers);
+            });
+        });
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                selectedCategory = button.getAttribute('data-category');
+                const filteredPlayers = playersData.filter(p => 
+                    (selectedBatch === 'all' || p.batch === selectedBatch) &&
+                    (selectedRole === 'all' || 
+                        (selectedRole === p.bat || selectedRole === p.ball || p.role.includes(selectedRole))) &&
+                    (selectedCategory === 'all' || p.category === selectedCategory)
                 );
                 renderPlayers(filteredPlayers);
             });
@@ -79,7 +102,17 @@ function initializeUI() {
             searchBar.value = '';
             selectedBatch = 'all';
             selectedRole = 'all';
-            renderPlayers(players);
+            selectedCategory = 'all'; 
+            
+            batchButtons.forEach(btn => btn.classList.remove('active'));
+            roleButtons.forEach(btn => btn.classList.remove('active'));
+            categoryButtons.forEach(btn => btn.classList.remove('active')); 
+            
+            document.querySelector('#batch-buttons [data-batch="all"]').classList.add('active');
+            document.querySelector('#role-buttons [data-role="all"]').classList.add('active');
+            document.querySelector('#cat-buttons [data-category="all"]').classList.add('active'); 
+            
+            renderPlayers(playersData);
         });
     }
 
