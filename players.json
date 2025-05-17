@@ -572,7 +572,7 @@
     {
         "ID": "58",
         "Name": "Jayed Arif",
-        "UID": "",
+        "UID": "Jayed_arif",
         "Batch": "ICT 5",
         "Role  ": "Batsman",
         "Batting": "Right-handed",
@@ -582,7 +582,7 @@
     {
         "ID": "59",
         "Name": "Saber",
-        "UID": "",
+        "UID": "saber",
         "Batch": "ICT 5",
         "Role  ": "Batsman",
         "Batting": "Right-Handed",
@@ -592,7 +592,7 @@
     {
         "ID": "60",
         "Name": "Shaikh",
-        "UID": "",
+        "UID": "shaikh",
         "Batch": "ICT 7",
         "Role  ": "All rounder",
         "Batting": "Right-Handed",

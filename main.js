@@ -24,7 +24,7 @@ function initializeUI() {
             filteredPlayers.forEach(p => {
                 pc.innerHTML += `
                 <div class="card">
-                    <img src="${p.image}" alt="${p.name}" onerror="this.src='image/players/image.png'">
+                    <img src="${p.image}" alt="${p.name}" onerror="this.src='image/players/image.jpg'">
                     <h3>${p.name}</h3>
                     <p>Batch: ${p.batch}</p>
                     <p>Category: ${p.category}</p>
