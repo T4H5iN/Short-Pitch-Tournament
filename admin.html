@@ -1,26 +1,795 @@
-<script>
-    if (localStorage.getItem("isAdmin") !== "true") {
-        window.location.href = "/login.html";
-    }
-</script>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Welcome to admin page</h1>
-    <button onclick="logout()">Logout</button>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+
+        if (localStorage.getItem("isAdmin") !== "true") {
+            window.location.href = "login.html";
+        }
+
+    </script>
+    <style>
+        select, input{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .new-fixture-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .admin-section {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-tab-btn {
+            padding: 12px 24px;
+            background-color: #eee;
+            border: solid 1px #211d4f;
+            border-radius: 5px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .admin-tab-btn.active {
+            background-color: #211d4f;
+            color: white;
+        }
+
+        .fixture-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .fixture-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .fixture-details {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .status-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-upcoming {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .status-live {
+            background-color: #ffebee;
+            color: #f44336;
+        }
+
+        .status-completed {
+            background-color: #e8f5e9;
+            color: #4caf50;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
     <script>
-    function logout() {
-        localStorage.removeItem("isAdmin");
-        location.href = "/login.html";
-    }
-    </script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC0ZbFmNxRgCCVmO_gNn7N6wSR1iNCVk-Y",
+            authDomain: "shortpitch-tournament.firebaseapp.com",
+            databaseURL: "https://shortpitch-tournament-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            projectId: "shortpitch-tournament",
+            storageBucket: "shortpitch-tournament.appspot.com",
+            messagingSenderId: "708757348284",
+            appId: "1:708757348284:web:460ae0381233f8985c95b9"
+        };
 
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+    </script>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html">Home</a>
+        <a href="teams.html">Team</a>
+        <a href="players.html">Players</a>
+        <a href="status.html">Match Status</a>
+        <!-- <a href="index.html#fixture">Fixtures</a> -->
+        <a href="index.html#point-table-container">Point Table</a>
+        <a href="admin.html">ADMIN</a>
+    </div>
+
+        <div class="content-wrapper">
+            <h1 style="text-align: center; margin-top: 100px;">Admin Dashboard</h1>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="score-updates">Live Score Updates</button>
+                <button class="admin-tab-btn" data-tab="fixtures">Manage Fixtures</button>
+            </div>
+            
+            <div id="score-updates-section" class="admin-section active">
+                <h2>Live Score Updates</h2>
+                <div id="match-cards"></div>
+            </div>
+            
+            <div id="fixtures-section" class="admin-section">
+                <h2>Match Fixtures</h2>
+                
+                <div class="new-fixture-form">
+                    <h3>Add New Match</h3>
+                    <form id="fixture-form">
+                        <div class="form-group">
+                            <label for="match-name">Match Name</label>
+                            <input type="text" id="match-name" placeholder="e.g. Match 3" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="team-a">Team A</label>
+                                <select id="team-a" required>
+                                    <option value="">Select Team</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="team-b">Team B</label>
+                                <select id="team-b" required>
+                                    <option value="">Select Team</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="filter-btn" style="background-color: #211d4f; color: white; width: 100%;">
+                            Add Match
+                        </button>
+                    </form>
+                </div>
+                
+                <h3>All Fixtures</h3>
+                <div id="fixtures-list">
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px;">
+                <button id="save-all" class="filter-btn" style="background-color: #211d4f; color: white;">Save All Changes</button>
+                <button id="logout-btn" class="filter-btn" style="background-color: #ff4d4d; color: white;">Logout</button>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <div class="footer-content">
+            <p>Made with ❤️ by MDTI</p>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.admin-tab-btn');
+            const adminSections = document.querySelectorAll('.admin-section');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    adminSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === tabId + '-section') {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof matchResults === 'undefined') {
+                document.addEventListener('playersLoaded', initializeAdminPanel);
+            } else {
+                initializeAdminPanel();
+            }
+        });
+
+        function initializeAdminPanel() {
+            const sessionToken = localStorage.getItem("adminSessionToken");
+            const sessionExpires = localStorage.getItem("adminSessionExpires");
+
+            if (!sessionToken || !sessionExpires || Date.now() > parseInt(sessionExpires)) {
+                localStorage.removeItem("adminSessionToken");
+                localStorage.removeItem("adminSessionExpires");
+                localStorage.removeItem("isAdmin");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const teamASelect = document.getElementById('team-a');
+            const teamBSelect = document.getElementById('team-b');
+
+            teamASelect.innerHTML = '<option value="">Select Team</option>';
+            teamBSelect.innerHTML = '<option value="">Select Team</option>';
+
+            database.ref('teams').once('value').then((snapshot) => {
+                if (snapshot.exists()) {
+                    snapshot.forEach((teamSnapshot) => {
+                        const team = teamSnapshot.val();
+                        
+                        const optionA = document.createElement('option');
+                        optionA.value = team.name;
+                        optionA.textContent = team.name;
+                        teamASelect.appendChild(optionA);
+                        
+                        const optionB = document.createElement('option');
+                        optionB.value = team.name;
+                        optionB.textContent = team.name;
+                        teamBSelect.appendChild(optionB);
+                    });
+                } else {
+                    const defaultTeams = ['Strikers', 'Blazers', 'Warriors', 'Champions'];
+                    defaultTeams.forEach(team => {
+                        const optionA = document.createElement('option');
+                        optionA.value = team;
+                        optionA.textContent = team;
+                        teamASelect.appendChild(optionA);
+                        
+                        const optionB = document.createElement('option');
+                        optionB.value = team;
+                        optionB.textContent = team;
+                        teamBSelect.appendChild(optionB);
+                    });
+                }
+            });
+
+            const fixtureForm = document.getElementById('fixture-form');
+            fixtureForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const matchName = document.getElementById('match-name').value;
+                const teamA = document.getElementById('team-a').value;
+                const teamB = document.getElementById('team-b').value;
+                
+                if (teamA === teamB) {
+                    alert('Team A and Team B cannot be the same!');
+                    return;
+                }
+                
+                const newMatch = {
+                    id: Date.now(), 
+                    match: matchName,
+                    teamA: teamA,
+                    teamB: teamB,
+                    scoreA: "",
+                    scoreB: "",
+                    runsA: 0,
+                    wicketsA: 0,
+                    oversA: 0,
+                    runsB: 0,
+                    wicketsB: 0,
+                    oversB: 0,
+                    winner: "",
+                    status: "Upcoming",
+                    completed: false,
+                    timestamp: Date.now(),
+                    sessionToken: localStorage.getItem('adminSessionToken')
+                };
+                
+                database.ref('matches/' + newMatch.id).set(newMatch)
+                    .then(() => {
+                        fixtureForm.reset();                        
+                        alert('Match added successfully!');
+                        loadFixtures();
+                    })
+                    .catch(error => {
+                        console.error('Error adding match:', error);
+                        alert('Error adding match: ' + error.message);
+                    });
+            });
+
+            function loadFixtures() {
+                const fixturesList = document.getElementById('fixtures-list');
+                fixturesList.innerHTML = '<p>Loading fixtures...</p>';
+                
+                database.ref('matches').once('value').then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const fixtures = [];
+                        snapshot.forEach((childSnapshot) => {
+                            fixtures.push(childSnapshot.val());
+                        });
+                        
+                        fixtures.sort((a, b) => {
+                            if (a.status === 'Live' && b.status !== 'Live') return -1;
+                            if (a.status !== 'Live' && b.status === 'Live') return 1;
+                            
+                            if (a.status === 'Upcoming' && b.status === 'Completed') return -1;
+                            if (a.status === 'Completed' && b.status === 'Upcoming') return 1;
+                            
+                            if (a.status === 'Upcoming' && b.status === 'Upcoming') {
+                                return new Date(a.date) - new Date(b.date);
+                            }
+                            
+                            if (a.status === 'Completed' && b.status === 'Completed') {
+                                return new Date(b.date) - new Date(a.date);
+                            }
+                            
+                            return 0;
+                        });
+                        
+                        if (fixtures.length === 0) {
+                            fixturesList.innerHTML = '<p>No fixtures available. Add one above.</p>';
+                            return;
+                        }
+                        
+                        fixturesList.innerHTML = '';
+                        
+                        fixtures.forEach(fixture => {
+                            const fixtureItem = document.createElement('div');
+                            fixtureItem.className = 'fixture-item';
+                            
+                            const statusClass = fixture.status === 'Live' ? 'status-live' : 
+                                            fixture.status === 'Completed' ? 'status-completed' : 
+                                            'status-upcoming';
+                            
+                        fixtureItem.innerHTML = `
+                            <div class="fixture-header">
+                                <h4>${fixture.match}: ${fixture.teamA} vs ${fixture.teamB}
+                                    <span class="status-tag ${statusClass}">${fixture.status}</span>
+                                </h4>
+                                <button class="filter-btn" onclick="deleteFixture('${fixture.id}')" 
+                                        style="background-color: #ff4d4d; color: white; padding: 5px 10px;">
+                                    Delete
+                                </button>
+                            </div>
+                            <div class="fixture-details">
+                                <!-- Remove the date, time and venue line -->
+                                ${fixture.status === 'Completed' ? 
+                                    `<p><strong>Result:</strong> ${fixture.winner === 'Draw' ? 'Match Drawn' : fixture.winner + ' won'}</p>` 
+                                    : ''}
+                            </div>
+                        `;
+                            
+                            fixturesList.appendChild(fixtureItem);
+                        });
+                    } else {
+                        fixturesList.innerHTML = '<p>No fixtures available. Add one above.</p>';
+                    }
+                }).catch(error => {
+                    console.error('Error loading fixtures:', error);
+                    fixturesList.innerHTML = '<p>Error loading fixtures. Please try again.</p>';
+                });
+            }
+
+            function loadLiveScoreUpdates() {
+                const matchCardsContainer = document.getElementById('match-cards');
+                matchCardsContainer.innerHTML = '<p>Loading matches...</p>';
+                
+                database.ref('matches').once('value').then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const matches = [];
+                        snapshot.forEach((childSnapshot) => {
+                            matches.push({...childSnapshot.val(), key: childSnapshot.key});
+                        });
+                        
+                        if (matches.length === 0) {
+                            matchCardsContainer.innerHTML = '<p style="text-align: center;">No matches available. Add some in the Manage Fixtures tab.</p>';
+                            return;
+                        }
+                        
+                        matches.sort((a, b) => {
+                            if (a.status === 'Live' && b.status !== 'Live') return -1;
+                            if (a.status !== 'Live' && b.status === 'Live') return 1;
+                            if (a.status === 'Upcoming' && b.status === 'Completed') return -1;
+                            if (a.status === 'Completed' && b.status === 'Upcoming') return 1;
+                            return 0;
+                        });
+                        
+                        matchCardsContainer.innerHTML = '';
+                        
+                        matches.forEach((match, index) => {
+                            const card = document.createElement('div');
+                            card.className = 'admin-match-card';
+                            
+                            card.innerHTML = `
+                                <h3 style="color: #211d4f; text-align: center; margin-bottom: 15px;">
+                                    ${match.match}: ${match.teamA} vs ${match.teamB}
+                                </h3>
+                                
+                                <div style="border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
+                                    <select id="match-status-${match.id}" style="width: 100%; padding: 8px; border-radius: 5px; margin-bottom: 10px;">
+                                        <option value="Upcoming" ${match.status === 'Upcoming' ? 'selected' : ''}>Upcoming</option>
+                                        <option value="Live" ${match.status === 'Live' ? 'selected' : ''}>Live</option>
+                                        <option value="Completed" ${match.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                                    </select>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                    <div style="flex: 1; text-align: center;">
+                                        <h4>${match.teamA}</h4>
+                                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-top: 10px;">
+                                            <div>
+                                                <label>Runs</label>
+                                                <input type="number" id="runs-a-${match.id}" value="${match.runsA || 0}" min="0" 
+                                                    style="width: 60px; padding: 5px; margin: 5px; text-align: center;">
+                                            </div>
+                                            <div>
+                                                <label>Wickets</label>
+                                                <input type="number" id="wickets-a-${match.id}" value="${match.wicketsA || 0}" min="0" max="10" 
+                                                    style="width: 60px; padding: 5px; margin: 5px; text-align: center;">
+                                            </div>
+                                            <div>
+                                                <label>Overs</label>
+                                                <input type="number" id="overs-a-${match.id}" value="${match.oversA || 0}" min="0" max="20" step="0.1" 
+                                                    style="width: 60px; padding: 5px; margin: 5px; text-align: center;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: flex; justify-content: center; align-items: center; margin: 0 15px;">
+                                        <span style="font-size: 20px; font-weight: bold;">vs</span>
+                                    </div>
+                                    
+                                    <div style="flex: 1; text-align: center;">
+                                        <h4>${match.teamB}</h4>
+                                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-top: 10px;">
+                                            <div>
+                                                <label>Runs</label>
+                                                <input type="number" id="runs-b-${match.id}" value="${match.runsB || 0}" min="0" 
+                                                    style="width: 60px; padding: 5px; margin: 5px; text-align: center;">
+                                            </div>
+                                            <div>
+                                                <label>Wickets</label>
+                                                <input type="number" id="wickets-b-${match.id}" value="${match.wicketsB || 0}" min="0" max="10" 
+                                                    style="width: 60px; padding: 5px; margin: 5px; text-align: center;">
+                                            </div>
+                                            <div>
+                                                <label>Overs</label>
+                                                <input type="number" id="overs-b-${match.id}" value="${match.oversB || 0}" min="0" max="20" step="0.1" 
+                                                    style="width: 60px; padding: 5px; margin: 5px; text-align: center;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px;">
+                                    <label style="display: block; margin-bottom: 5px;">Winner (for completed matches)</label>
+                                    <select id="winner-${match.id}" style="width: 100%; padding: 8px; border-radius: 5px; margin-bottom: 15px;">
+                                        <option value="" ${!match.winner ? 'selected' : ''}>Select Winner</option>
+                                        <option value="${match.teamA}" ${match.winner === match.teamA ? 'selected' : ''}>${match.teamA}</option>
+                                        <option value="${match.teamB}" ${match.winner === match.teamB ? 'selected' : ''}>${match.teamB}</option>
+                                        <option value="Draw" ${match.winner === 'Draw' ? 'selected' : ''}>Draw</option>
+                                    </select>
+                                </div>
+                                
+                                <button class="filter-btn" onclick="updateMatch('${match.id}')" 
+                                        style="background-color: #211d4f; color: white; width: 100%; margin-top: 10px;">
+                                    Update Match
+                                </button>
+                            `;
+                            
+                            matchCardsContainer.appendChild(card);
+                        });
+                    } else {
+                        matchCardsContainer.innerHTML = '<p style="text-align: center;">No matches available. Add some in the Manage Fixtures tab.</p>';
+                    }
+                }).catch(error => {
+                    console.error('Error loading matches:', error);
+                    matchCardsContainer.innerHTML = '<p style="text-align: center;">Error loading matches: ' + error.message + '</p>';
+                });
+            }
+
+            window.updateMatch = function(matchId) {
+                const status = document.getElementById(`match-status-${matchId}`).value;
+                const runsA = parseInt(document.getElementById(`runs-a-${matchId}`).value) || 0;
+                const wicketsA = parseInt(document.getElementById(`wickets-a-${matchId}`).value) || 0;
+                const oversA = parseFloat(document.getElementById(`overs-a-${matchId}`).value) || 0;
+                const runsB = parseInt(document.getElementById(`runs-b-${matchId}`).value) || 0;
+                const wicketsB = parseInt(document.getElementById(`wickets-b-${matchId}`).value) || 0;
+                const oversB = parseFloat(document.getElementById(`overs-b-${matchId}`).value) || 0;
+                const winner = document.getElementById(`winner-${matchId}`).value;
+                
+                const scoreA = `${runsA}/${wicketsA} (${oversA})`;
+                const scoreB = `${runsB}/${wicketsB} (${oversB})`;
+
+                database.ref('matches/' + matchId).once('value').then((snapshot) => {
+                    const match = snapshot.val();
+                    const previousStatus = match.status;
+                    const teamA = match.teamA;
+                    const teamB = match.teamB;
+                    
+                    const updates = {
+                        status: status,
+                        runsA: runsA,
+                        wicketsA: wicketsA,
+                        oversA: oversA,
+                        runsB: runsB,
+                        wicketsB: wicketsB,
+                        oversB: oversB,
+                        scoreA: scoreA,
+                        scoreB: scoreB,
+                        winner: winner,
+                        timestamp: Date.now(),
+                        sessionToken: localStorage.getItem('adminSessionToken')
+                    };
+                    
+                    database.ref('matches/' + matchId).update(updates)
+                        .then(() => {
+                            if (status === 'Completed' && previousStatus !== 'Completed') {
+                                updatePointTable(teamA, teamB, winner);
+                            }
+                            
+                            const feedback = document.createElement('div');
+                            feedback.textContent = `Match updated successfully!`;
+                            feedback.style.position = 'fixed';
+                            feedback.style.bottom = '20px';
+                            feedback.style.right = '20px';
+                            feedback.style.padding = '10px 20px';
+                            feedback.style.background = '#4CAF50';
+                            feedback.style.color = 'white';
+                            feedback.style.borderRadius = '5px';
+                            feedback.style.zIndex = '1000';
+                            
+                            document.body.appendChild(feedback);
+                            
+                            setTimeout(() => {
+                                feedback.remove();
+                            }, 3000);
+                        })
+                        .catch(error => {
+                            console.error('Error updating match:', error);
+                            alert('Error updating match: ' + error.message);
+                        });
+                });
+            };
+
+            function updatePointTable(teamA, teamB, winner) {
+                database.ref('pointTable').once('value').then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const pointTableData = {};
+                        let foundTeamA = false;
+                        let foundTeamB = false;
+                        
+                        snapshot.forEach((childSnapshot) => {
+                            const key = childSnapshot.key;
+                            const team = childSnapshot.val();
+                            
+                            pointTableData[key] = {...team};
+                            
+                            if (team.team === teamA) {
+                                foundTeamA = true;
+                                pointTableData[key].played = (team.played || 0) + 1;
+                                
+                                if (winner === teamA) {
+                                    pointTableData[key].won = (team.won || 0) + 1;
+                                    pointTableData[key].points = (team.points || 0) + 2;
+                                } else if (winner !== 'Draw') {
+                                    pointTableData[key].lost = (team.lost || 0) + 1;
+                                }
+                                
+                                pointTableData[key].nrr = team.nrr || "0.00";
+                            }
+                            
+                            if (team.team === teamB) {
+                                foundTeamB = true;
+                                pointTableData[key].played = (team.played || 0) + 1;
+                                
+                                if (winner === teamB) {
+                                    pointTableData[key].won = (team.won || 0) + 1;
+                                    pointTableData[key].points = (team.points || 0) + 2;
+                                } else if (winner !== 'Draw') {
+                                    pointTableData[key].lost = (team.lost || 0) + 1;
+                                }
+                                
+                                pointTableData[key].nrr = team.nrr || "0.00";
+                            }
+                        });
+                        
+                        if (!foundTeamA) {
+                            const newKey = Object.keys(pointTableData).length;
+                            pointTableData[newKey] = {
+                                team: teamA,
+                                played: 1,
+                                won: winner === teamA ? 1 : 0,
+                                lost: winner !== teamA && winner !== 'Draw' ? 1 : 0,
+                                points: winner === teamA ? 2 : 0,
+                                nrr: "0.00"
+                            };
+                        }
+                        
+                        if (!foundTeamB) {
+                            const newKey = Object.keys(pointTableData).length;
+                            pointTableData[newKey] = {
+                                team: teamB,
+                                played: 1,
+                                won: winner === teamB ? 1 : 0,
+                                lost: winner !== teamB && winner !== 'Draw' ? 1 : 0,
+                                points: winner === teamB ? 2 : 0,
+                                nrr: "0.00"
+                            };
+                        }
+                        
+                        database.ref('pointTable').set(pointTableData)
+                            .then(() => console.log('Point table updated'))
+                            .catch(err => console.error('Error updating point table:', err));
+                    }
+                });
+            }
+
+            window.deleteFixture = function(id) {
+                if (!confirm('Are you sure you want to delete this fixture?')) {
+                    return;
+                }
+                
+                database.ref('matches/' + id).once('value')
+                    .then((snapshot) => {
+                        const match = snapshot.val();
+                        
+                        if (!match) {
+                            throw new Error('Match not found');
+                        }
+
+                        if (match.status === 'Completed') {
+                            return updatePointTableForDeletedMatch(match).then(() => match);
+                        }
+                        
+                        return match;
+                    })
+                    .then((match) => {
+                        return database.ref('matches/' + id).remove()
+                            .then(() => {
+                                alert('Fixture deleted successfully!');
+                                loadFixtures();
+                            });
+                    })
+                    .catch(error => {
+                        console.error('Error deleting fixture:', error);
+                        alert('Error deleting fixture: ' + error.message);
+                    });
+            };
+
+            function updatePointTableForDeletedMatch(match) {
+                return database.ref('pointTable').once('value')
+                    .then((snapshot) => {
+                        if (!snapshot.exists()) {
+                            return; 
+                        }
+                        
+                        const pointTableData = {};
+                        let teamAKey = null;
+                        let teamBKey = null;
+                        
+                        snapshot.forEach((childSnapshot) => {
+                            const key = childSnapshot.key;
+                            const team = childSnapshot.val();
+                            
+                            pointTableData[key] = {...team};
+                            
+                            if (team.team === match.teamA) {
+                                teamAKey = key;
+                            }
+                            if (team.team === match.teamB) {
+                                teamBKey = key;
+                            }
+                        });
+                        
+                        if (!teamAKey || !teamBKey) {
+                            return;
+                        }
+                        
+                        pointTableData[teamAKey].played = Math.max(0, (pointTableData[teamAKey].played || 0) - 1);
+                        if (match.winner === match.teamA) {
+                            pointTableData[teamAKey].won = Math.max(0, (pointTableData[teamAKey].won || 0) - 1);
+                            pointTableData[teamAKey].points = Math.max(0, (pointTableData[teamAKey].points || 0) - 2);
+                        } else if (match.winner && match.winner !== 'Draw') {
+                            pointTableData[teamAKey].lost = Math.max(0, (pointTableData[teamAKey].lost || 0) - 1);
+                        }
+                        
+                        pointTableData[teamBKey].played = Math.max(0, (pointTableData[teamBKey].played || 0) - 1);
+                        if (match.winner === match.teamB) {
+                            pointTableData[teamBKey].won = Math.max(0, (pointTableData[teamBKey].won || 0) - 1);
+                            pointTableData[teamBKey].points = Math.max(0, (pointTableData[teamBKey].points || 0) - 2);
+                        } else if (match.winner && match.winner !== 'Draw') {
+                            pointTableData[teamBKey].lost = Math.max(0, (pointTableData[teamBKey].lost || 0) - 1);
+                        }
+                        
+                        return database.ref('pointTable').set(pointTableData);
+                    });
+            }
+
+            loadFixtures();
+            loadLiveScoreUpdates();
+
+            const tabButtons = document.querySelectorAll('.admin-tab-btn');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    if (tabId === 'fixtures') {
+                        loadFixtures();
+                    } else if (tabId === 'score-updates') {
+                        loadLiveScoreUpdates();
+                    }
+                });
+            });
+
+        const saveAllButton = document.getElementById('save-all');
+        if (saveAllButton) {
+            saveAllButton.addEventListener('click', function() {
+                alert('All changes have been saved automatically.');
+            });
+        } 
+
+        const logoutButton = document.getElementById('logout-btn');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', function() {
+                    localStorage.removeItem("adminSessionToken");
+                    localStorage.removeItem("adminSessionExpires");
+                    localStorage.removeItem("isAdmin");
+                    window.location.href = "login.html";
+                });
+            }        
+        }
+    </script>
 </body>
 </html>

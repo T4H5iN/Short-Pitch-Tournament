@@ -23,6 +23,7 @@ fetch('players.json')
     });
     
     initializeTeams();
+    initializePointTable();
     
     document.dispatchEvent(new Event('playersLoaded'));
 })
@@ -187,3 +188,32 @@ const matchResults = [
         status: "Upcoming"
     }
 ];
+
+function initializePointTable() {
+    if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+        firebase.database().ref('pointTable').once('value')
+            .then(snapshot => {
+                if (!snapshot.exists()) {
+                    const pointTableData = {};
+                    
+                    teams.forEach((team, index) => {
+                        pointTableData[index] = {
+                            team: team.name,
+                            played: 0,
+                            won: 0,
+                            lost: 0,
+                            points: 0,
+                            nrr: "0.00"
+                        };
+                    });
+                    
+                    firebase.database().ref('pointTable').set(pointTableData)
+                        .then(() => console.log('Point table initialized'))
+                        .catch(err => console.error('Error initializing point table:', err));
+                }
+            })
+            .catch(err => console.error('Error checking point table:', err));
+    } else {
+        console.warn('Firebase not initialized yet for point table');
+    }
+}

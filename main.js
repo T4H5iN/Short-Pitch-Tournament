@@ -172,36 +172,47 @@ function initializeUI() {
         });
     }
 
-    const pt = document.getElementById('point-table-container');
-    if (pt) {
-        pt.innerHTML = `
-            <table class="points-table">
-                <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>Played</th>
-                        <th>Won</th>
-                        <th>Lost</th>
-                        <th>Points</th>
-                        <th>NRR</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    ${pointTable.map(team => `
+const pt = document.getElementById('point-table-container');
+if (pt) {
+    database.ref('pointTable').on('value', (snapshot) => {
+        if (snapshot.exists()) {
+            const pointTableData = [];
+            snapshot.forEach(childSnapshot => {
+                pointTableData.push(childSnapshot.val());
+            });
+            
+            pt.innerHTML = `
+                <table class="points-table">
+                    <thead>
                         <tr>
-                            <td>${team.team}</td>
-                            <td>${team.played}</td>
-                            <td>${team.won}</td>
-                            <td>${team.lost}</td>
-                            <td>${team.points}</td>
-                            <td>${team.nrr}</td>
+                            <th>Team</th>
+                            <th>Played</th>
+                            <th>Won</th>
+                            <th>Lost</th>
+                            <th>Points</th>
+                            <th>NRR</th>
                         </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        `;
-    }
+                    </thead>
+                    
+                    <tbody>
+                        ${pointTableData.map(team => `
+                            <tr>
+                                <td>${team.team}</td>
+                                <td>${team.played}</td>
+                                <td>${team.won}</td>
+                                <td>${team.lost}</td>
+                                <td>${team.points}</td>
+                                <td>${team.nrr}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        } else {
+            pt.innerHTML = '<p style="text-align: center;">No point table data available.</p>';
+        }
+    });
+}
 
     const rc = document.getElementById('results-container');
     if (rc) {

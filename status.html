@@ -3,8 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixtures</title>
+    <title>Match Status</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .live-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .match-card.live {
+            border: 2px solid #ff4d4d;
+        }
+        
+        .score-display {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .real-time-indicator {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            color: #00796b;
+            font-size: 14px;
+        }
+        
+        .updating-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #00c853;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC0ZbFmNxRgCCVmO_gNn7N6wSR1iNCVk-Y",
+            authDomain: "shortpitch-tournament.firebaseapp.com",
+            databaseURL: "https://shortpitch-tournament-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            projectId: "shortpitch-tournament",
+            storageBucket: "shortpitch-tournament.appspot.com",
+            messagingSenderId: "708757348284",
+            appId: "1:708757348284:web:460ae0381233f8985c95b9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+    </script>
 </head>
 <body>
     <div class="header">
@@ -12,15 +79,22 @@
         <a href="teams.html">Team</a>
         <a href="players.html">Players</a>
         <a href="status.html">Match Status</a>
-        <a href="index.html#fixture">Fixtures</a>
+        <!-- <a href="index.html#fixture">Fixtures</a> -->
         <a href="index.html#point-table-container">Point Table</a>
         <a href="admin.html">ADMIN</a>
     </div>
-<div class="content-wrapper">
-    <h1 style="text-align: center; margin-top: 100px;"></h1>
-
-    <div id="results-container"></div>
-</div>
+    
+    <div class="content-wrapper">
+        <h1 style="text-align: center; margin-top: 100px;">Match Status</h1>
+        
+        <div class="real-time-indicator">
+            <span class="updating-indicator"></span>
+            Live updates enabled - scores will update automatically
+        </div>
+        
+        <div id="results-container"></div>
+    </div>
+    
     <div class="footer">
         <div class="footer-content">
             <p>Made with ❤️ by MDTI</p>
@@ -28,6 +102,108 @@
     </div>
 
     <script src="data.js"></script>
-    <script src="main.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const resultsContainer = document.getElementById('results-container');
+    const indicator = document.querySelector('.real-time-indicator');
+    
+    database.ref('matches').on('value', (snapshot) => {
+        indicator.style.backgroundColor = '#b2dfdb';
+        setTimeout(() => {
+            indicator.style.backgroundColor = '#e0f7fa';
+        }, 300);
+        
+        if (snapshot.exists()) {
+            const matches = [];
+            snapshot.forEach(childSnapshot => {
+                matches.push(childSnapshot.val());
+            });
+            displayMatches(matches);
+        } else {
+            resultsContainer.innerHTML = '<p style="text-align: center;">No match data available</p>';
+        }
+    });
+    
+    function displayMatches(matches) {
+        matches.sort((a, b) => {
+            if (a.status !== b.status) {
+                if (a.status === 'Live') return -1;
+                if (b.status === 'Live') return 1;
+                
+                if (a.status === 'Upcoming' && b.status === 'Completed') return 1;
+                if (a.status === 'Completed' && b.status === 'Upcoming') return -1;
+            }
+            
+            if (a.status === 'Upcoming' && b.status === 'Upcoming') {
+                return new Date(a.date || 0) - new Date(b.date || 0);
+            }
+            
+            if (a.status === 'Completed' && b.status === 'Completed') {
+                return b.timestamp - a.timestamp;
+            }
+            
+            return 0;
+        });
+        
+        let liveMatches = '';
+        let completedMatches = '';
+        let upcomingMatches = '';
+        
+        matches.forEach(match => {
+            const isLive = match.status === 'Live';
+            const isCompleted = match.status === 'Completed';
+            
+            const matchHTML = `
+                <div class="match-card ${isLive ? 'live' : (isCompleted ? 'completed' : 'upcoming')}">
+                    <h3>${match.match}</h3>
+                    ${isLive ? '<div class="live-indicator">LIVE</div>' : ''}
+                    <div class="teams">
+                        <div class="team">
+                            <strong>${match.teamA}</strong>
+                            <p class="score-display">
+                                ${isLive || isCompleted ? match.scoreA || '0/0 (0.0)' : 'Yet to bat'}
+                            </p>
+                        </div>
+                        <span>vs</span>
+                        <div class="team">
+                            <strong>${match.teamB}</strong>
+                            <p class="score-display">
+                                ${isLive || isCompleted ? match.scoreB || '0/0 (0.0)' : 'Yet to bat'}
+                            </p>
+                        </div>
+                    </div>
+                    <p class="result-text">
+                        ${isCompleted ? 
+                            `Winner: <strong>${match.winner || 'Not decided'}</strong>` : 
+                            (isLive ? '<em>Match in progress</em>' : '<em>Match Yet To Be Played</em>')}
+                    </p>
+                </div>
+            `;
+            
+            if (isLive) {
+                liveMatches += matchHTML;
+            } else if (isCompleted) {
+                completedMatches += matchHTML;
+            } else {
+                upcomingMatches += matchHTML;
+            }
+        });
+        
+        let html = '';
+        
+        if (liveMatches) {
+            html += `<h2 style="text-align: center; margin-top: 40px; color: #ff4d4d;">Live Matches</h2>${liveMatches}`;
+        }
+        if (upcomingMatches) {
+            html += `<h2 style="text-align: center; margin-top: 40px;">Upcoming Matches</h2>${upcomingMatches}`;
+        }
+        if (completedMatches) {
+            html += `<h2 style="text-align: center; margin-top: 40px;">Completed Matches</h2>${completedMatches}`;
+        }
+
+        resultsContainer.innerHTML = html;
+    }
+});
+    </script>
 </body>
 </html>

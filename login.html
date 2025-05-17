@@ -59,6 +59,7 @@
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
 
         .login-form button:hover {
@@ -72,7 +73,7 @@
         <a href="teams.html">Team</a>
         <a href="players.html">Players</a>
         <a href="status.html">Match Status</a>
-        <a href="index.html#fixture">Fixtures</a>
+        <!-- <a href="index.html#fixture">Fixtures</a> -->
         <a href="index.html#point-table-container">Point Table</a>
         <a href="admin.html">ADMIN</a>
     </div>
@@ -98,17 +99,24 @@
             e.preventDefault();
             const password = document.getElementById("password").value;
 
-            const response = await fetch("/.netlify/functions/login", {
-                method: "POST",
-                body: JSON.stringify({ password }),
-            });
+            try {
+                const response = await fetch("/.netlify/functions/login", {
+                    method: "POST",
+                    body: JSON.stringify({ password }),
+                });
 
-            const data = await response.json();
-            if (data.success) {
-                localStorage.setItem("isAdmin", "true");
-                window.location.href = "/admin.html";
-            } else {
-                alert("Incorrect password");
+                const data = await response.json();
+                if (data.success) {
+                    localStorage.setItem("adminSessionToken", data.sessionToken);
+                    localStorage.setItem("adminSessionExpires", data.expires);
+                    localStorage.setItem("isAdmin", "true");
+                    window.location.href = "/admin.html";
+                } else {
+                    alert("Incorrect password");
+                }
+            } catch (error) {
+                console.error("Login error:", error);
+                alert("Login failed. Please try again.");
             }
         });
     </script>
