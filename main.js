@@ -147,7 +147,7 @@ function initializeUI() {
                             playerCard.classList.add('captain-highlight');
                         }
                         playerCard.innerHTML = `
-                            <img src="${player.image}" alt="${player.name}" onerror="this.src='image/players/image.png'">
+                            <img src="${player.image}" alt="${player.name}" onerror="this.src='image/players/image.jpg'">
                             <h3>${player.name}</h3>
                             <p>${player.role}</p>
                             ${player.bat !== "Not applicable" ? `<p>${player.bat} batsman</p>` : ""}
