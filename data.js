@@ -77,7 +77,7 @@ const teams = [
 ];
 
 function initializeTeams() {
-    teams[0].players = [2, 5, 6, 7, 8, 10, 11, 12, 13, 14].map(id => {
+    teams[0].players = [].map(id => {
         const player = playersData.find(p => p.id === id);
         if (player) {
             player.team = ""; 
@@ -86,7 +86,7 @@ function initializeTeams() {
         return null;
     }).filter(id => id !== null);
 
-    teams[1].players = [2, 5, 6, 7, 8, 10, 11, 12, 13, 14].map(id => {
+    teams[1].players = [].map(id => {
         const player = playersData.find(p => p.id === id);
         if (player) {
             player.team = ""; 
@@ -95,7 +95,7 @@ function initializeTeams() {
         return null;
     }).filter(id => id !== null);
 
-    teams[2].players = [2, 5, 6, 7, 8, 10, 11, 12, 13, 14].map(id => {
+    teams[2].players = [].map(id => {
         const player = playersData.find(p => p.id === id);
         if (player) {
             player.team = ""; 
@@ -104,7 +104,7 @@ function initializeTeams() {
         return null;
     }).filter(id => id !== null);
 
-    teams[3].players = [2, 5, 6, 7, 8, 10, 11, 12, 13, 14].map(id => {
+    teams[3].players = [].map(id => {
         const player = playersData.find(p => p.id === id);
         if (player) {
             player.team = ""; 
@@ -113,7 +113,7 @@ function initializeTeams() {
         return null;
     }).filter(id => id !== null);
 
-    teams[4].players = [2, 5, 6, 7, 8, 10, 11, 12, 13, 14].map(id => {
+    teams[4].players = [].map(id => {
         const player = playersData.find(p => p.id === id);
         if (player) {
             player.team = ""; 
@@ -122,7 +122,7 @@ function initializeTeams() {
         return null;
     }).filter(id => id !== null);
 
-    teams[5].players = [2, 5, 6, 7, 8, 10, 11, 12, 13, 14].map(id => {
+    teams[5].players = [].map(id => {
         const player = playersData.find(p => p.id === id);
         if (player) {
             player.team = ""; 
