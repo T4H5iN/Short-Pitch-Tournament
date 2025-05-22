@@ -607,7 +607,7 @@ a{
     }
     
     #teams-container .card {
-        height: 200px;
+        min-height: auto;
     }
     
     .cards {
@@ -717,7 +717,7 @@ a{
     #teams-container .card {
         width: 85%;
         min-width: 250px;
-        height: auto;
+        min-height: auto;
     }
     
     #team-players .card {
@@ -912,6 +912,7 @@ a{
     
     #teams-container .card {
         width: 90%;
+        min-height: auto;
         min-width: 220px;
     }
     

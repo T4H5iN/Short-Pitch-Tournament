@@ -137,6 +137,10 @@ function initializeUI() {
                 teamLogo.src = t.logo;
                 teamCaptain.textContent = `Owner: ${t.owner}`;
                 teamPlayers.innerHTML = '';
+                if (t.players.length === 0) {
+                    teamPlayers.innerHTML = '<div style="margin-bottom: 30px; color: red;">No players have been assigned to this team yet.</div>';
+                    return;
+                }
         
                 t.players.forEach(id => {
                     const player = playersData.find(p => p.id === id);
