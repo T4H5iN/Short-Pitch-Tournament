@@ -30,7 +30,7 @@
         <a href="players.html">Players</a>
         <a href="status.html">Match Status</a>
         <!-- <a href="#fixture">Fixtures</a> -->
-        <a href="#point-table-container">Point Table</a>
+        <a href="point.html">Point Table</a>
         <a href="admin.html">ADMIN</a>
     </div>
 
@@ -38,7 +38,32 @@
 
     <h1 class="page-title"></h1>
 
-    <img src="image/banner.png" class="fixture-image">
+    <div class="banner-wrapper">
+        <img src="image/banner.png" class="fixture-image">
+    </div>
+
+    <div class="countdown-section">
+        <h2 class="countdown-title">Tournament Begins</h2>
+        <div class="countdown">
+            <div class="countdown-item">
+                <span id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+        <div class="countdown-date">JUNE 20, 2025 • FRIDAY • 09:00 AM</div>
+    </div>
 
     <div class="shortcut-container">
         <a href="teams.html"><p class="cards">Teams</p></a>
@@ -49,11 +74,7 @@
     <h1 id="fixture" class="section-title fixture-title">Match Fixture</h1>
     <img src="image/fixture.png" class="fixture-image">
     -->
-
-    <h1 class="section-title">Point Table</h1>
-
-    <div id="point-table-container"></div>
-
+        
     </div>
 
     <div class="footer">
@@ -70,6 +91,35 @@
         });
     </script>
     <script src="main.js"></script>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tournamentDate = new Date('June 20, 2025 09:00:00').getTime();
+            
+            const countdownTimer = setInterval(function() {
+                const now = new Date().getTime();
+                
+                const timeRemaining = tournamentDate - now;
+                
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days < 10 ? '0' + days : days;
+                document.getElementById('hours').textContent = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
+                
+                if (timeRemaining < 0) {
+                    clearInterval(countdownTimer);
+                    document.querySelector('.countdown-container h2').textContent = "Tournament Live!";
+                    document.getElementById('days').textContent = "00";
+                    document.getElementById('hours').textContent = "00";
+                    document.getElementById('minutes').textContent = "00";
+                    document.getElementById('seconds').textContent = "00";
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>

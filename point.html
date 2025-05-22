@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point Table</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC0ZbFmNxRgCCVmO_gNn7N6wSR1iNCVk-Y",
+            authDomain: "shortpitch-tournament.firebaseapp.com",
+            databaseURL: "https://shortpitch-tournament-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            projectId: "shortpitch-tournament",
+            storageBucket: "shortpitch-tournament.appspot.com",
+            messagingSenderId: "708757348284",
+            appId: "1:708757348284:web:460ae0381233f8985c95b9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+    </script>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html">Home</a>
+        <a href="teams.html">Team</a>
+        <a href="players.html">Players</a>
+        <a href="status.html">Match Status</a>
+        <!-- <a href="#fixture">Fixtures</a> -->
+        <a href="point.html">Point Table</a>
+        <a href="admin.html">ADMIN</a>
+    </div>
+
+    <div class="content-wrapper">
+
+    <h1 class="page-title"></h1>
+
+    <h1 class="section-title">Point Table</h1>
+
+    <div id="point-table-container"></div>
+
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <p>Made with ❤️ by MDTI</p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const dataScript = document.createElement('script');
+            dataScript.src = "data.js";
+            document.body.appendChild(dataScript);
+        });
+    </script>
+    <script src="main.js"></script>
+
+</body>
+</html>
