@@ -151,13 +151,13 @@
     },
     {
         "ID": "16",
-        "Name": "Abdullah Al Mueed",
-        "UID": "17511002",
-        "Batch": "ICT 3",
+        "Name": "Mahbub Hasan Milon",
+        "UID": "24549010113",
+        "Batch": "BICE 2024",
         "Role  ": "All-Rounder",
-        "Batting": "Left-handed",
-        "Bowling": "Right-arm fast",
-        "Category": "A"
+        "Batting": "Right-handed",
+        "Bowling ": "Right-arm spin",
+        "Category": "C"
     },
     {
         "ID": "17",
@@ -487,7 +487,7 @@
         "Role  ": "Bowler",
         "Batting": "Right-handed",
         "Bowling": "Right-arm spin",
-        "Category": "B"
+        "Category": "A"
     },
     {
         "ID": "50",
@@ -537,7 +537,7 @@
         "Role  ": "Batsman",
         "Batting": "Left-handed",
         "Bowling": "Right-arm spin",
-        "Category": "B"
+        "Category": "A"
     },
     {
         "ID": "55",
@@ -567,7 +567,7 @@
         "Role  ": "All-Rounder",
         "Batting": "Right-handed",
         "Bowling": "Right-arm spin",
-        "Category": "A"
+        "Category": "B"
     },
     {
         "ID": "58",
@@ -598,5 +598,45 @@
         "Batting": "Right-Handed",
         "Bowling": "Right-arm fast",
         "Category": "A"
+    },
+    {
+        "ID": "61",
+        "Name": "NABIL HASAN EVAN",
+        "UID": "24549010082",
+        "Batch": "BICE 2024",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling ": "Right-arm spin",
+        "Category": "C"
+    },
+    {
+        "ID": "62",
+        "Name": "Shafin Ahmed ",
+        "UID": "24549010121",
+        "Batch": "BICE 2024",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling ": "Left-arm spin",
+        "Category": "C"
+    },
+    {
+        "ID": "63",
+        "Name": "Md. Mohibur Rahman Tanzim",
+        "UID": "24549010046",
+        "Batch": "BICE 2024",
+        "Role  ": "Batsman",
+        "Batting": "Right-handed",
+        "Bowling ": "Not applicable",
+        "Category": "B"
+    },
+    {
+        "ID": "64",
+        "Name": "Ahnaf Tahmid ",
+        "UID": "24549010008",
+        "Batch": "BICE 2024",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling ": "Right-arm fast",
+        "Category": "C"
     }
 ]
