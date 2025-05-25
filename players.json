@@ -127,7 +127,7 @@
         "Role  ": "Batsman, Bowler, All-Rounder, Wicket-Keeper",
         "Batting": "Right-handed",
         "Bowling": "Right-arm fast",
-        "Category": "C"
+        "Category": "B"
     },
     {
         "ID": "14",
@@ -178,16 +178,6 @@
         "Batting": "Right-handed",
         "Bowling": "Right-arm spin",
         "Category": "C"
-    },
-    {
-        "ID": "19",
-        "Name": "Azmi",
-        "UID": "2254901039",
-        "Batch": "ICT 8",
-        "Role  ": "Batsman, Wicket-Keeper",
-        "Batting": "Right-handed",
-        "Bowling": "Not applicable",
-        "Category": "B"
     },
     {
         "ID": "20",
@@ -307,16 +297,6 @@
         "Role  ": "All-Rounder",
         "Batting": "Right-handed",
         "Bowling": "Left-arm spin",
-        "Category": "A"
-    },
-    {
-        "ID": "32",
-        "Name": "Md Tanzim Hossain (Ayon)",
-        "UID": "17511027",
-        "Batch": "ICT 3",
-        "Role  ": "All-Rounder",
-        "Batting": "Right-handed",
-        "Bowling": "Right-arm spin",
         "Category": "A"
     },
     {
@@ -567,7 +547,7 @@
         "Role  ": "All-Rounder",
         "Batting": "Right-handed",
         "Bowling": "Right-arm spin",
-        "Category": "B"
+        "Category": "A"
     },
     {
         "ID": "58",
@@ -617,7 +597,7 @@
         "Role  ": "All-Rounder",
         "Batting": "Right-handed",
         "Bowling ": "Left-arm spin",
-        "Category": "C"
+        "Category": "B"
     },
     {
         "ID": "63",
