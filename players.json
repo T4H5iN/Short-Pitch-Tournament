@@ -591,7 +591,7 @@
     },
     {
         "ID": "62",
-        "Name": "Shafin Ahmed ",
+        "Name": "Shafin Ahmed",
         "UID": "24549010121",
         "Batch": "BICE 2024",
         "Role  ": "All-Rounder",
@@ -611,12 +611,22 @@
     },
     {
         "ID": "64",
-        "Name": "Ahnaf Tahmid ",
+        "Name": "Ahnaf Tahmid",
         "UID": "24549010008",
         "Batch": "BICE 2024",
         "Role  ": "All-Rounder",
         "Batting": "Right-handed",
         "Bowling ": "Right-arm fast",
+        "Category": "C"
+    },
+    {
+        "ID": "65",
+        "Name": "Moheb",
+        "UID": "2054901050",
+        "Batch": "ICT 6",
+        "Role  ": "Batsman",
+        "Batting": "Right-handed",
+        "Bowling ": "Left-arm spin",
         "Category": "C"
     }
 ]
