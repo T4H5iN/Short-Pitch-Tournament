@@ -129,7 +129,7 @@ function initializeUI() {
             teamCard.classList.add('card');
             teamCard.innerHTML = `
                 <img src="${t.logo}" alt="${t.name || t.owner}">
-                <h3>${t.owner}</h3>
+                <h3>${t.name}</h3>
             `;
         
             teamCard.addEventListener('click', () => {
