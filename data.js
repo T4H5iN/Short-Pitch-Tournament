@@ -104,7 +104,7 @@ function initializeTeams() {
         return null;
     }).filter(id => id !== null);
 
-    teams[3].players = [58,43,41,62,22,54,26,48,7,18].map(id => {
+    teams[3].players = [58,43,41,62,22,54,26,48,7,18,66].map(id => {
         const player = playersData.find(p => p.id === id);
         if (player) {
             player.team = teams[3].name; 

@@ -628,5 +628,15 @@
         "Batting": "Right-handed",
         "Bowling ": "Left-arm spin",
         "Category": "C"
+    },
+    {
+        "ID": "66",
+        "Name": "MD. Shehab Uddin",
+        "UID": "2254901121",
+        "Batch": "ICT 8",
+        "Role  ": "All-Rounder",
+        "Batting": "Right-handed",
+        "Bowling ": "Right-arm spin",
+        "Category": "B"
     }
 ]
