@@ -267,42 +267,7 @@
                 return;
             }
 
-            const teamASelect = document.getElementById('team-a');
-            const teamBSelect = document.getElementById('team-b');
-
-            teamASelect.innerHTML = '<option value="">Select Team</option>';
-            teamBSelect.innerHTML = '<option value="">Select Team</option>';
-
-            database.ref('teams').once('value').then((snapshot) => {
-                if (snapshot.exists()) {
-                    snapshot.forEach((teamSnapshot) => {
-                        const team = teamSnapshot.val();
-                        
-                        const optionA = document.createElement('option');
-                        optionA.value = team.name;
-                        optionA.textContent = team.name;
-                        teamASelect.appendChild(optionA);
-                        
-                        const optionB = document.createElement('option');
-                        optionB.value = team.name;
-                        optionB.textContent = team.name;
-                        teamBSelect.appendChild(optionB);
-                    });
-                } else {
-                    const defaultTeams = ['Strikers', 'Blazers', 'Warriors', 'Champions'];
-                    defaultTeams.forEach(team => {
-                        const optionA = document.createElement('option');
-                        optionA.value = team;
-                        optionA.textContent = team;
-                        teamASelect.appendChild(optionA);
-                        
-                        const optionB = document.createElement('option');
-                        optionB.value = team;
-                        optionB.textContent = team;
-                        teamBSelect.appendChild(optionB);
-                    });
-                }
-            });
+            loadTeamOptions();
 
             const fixtureForm = document.getElementById('fixture-form');
             fixtureForm.addEventListener('submit', function(e) {
@@ -789,6 +754,27 @@
                     window.location.href = "login.html";
                 });
             }        
+        }
+
+        function loadTeamOptions() {
+            const teamASelect = document.getElementById('team-a');
+            const teamBSelect = document.getElementById('team-b');
+            
+            teamASelect.innerHTML = '<option value="">Select Team</option>';
+            teamBSelect.innerHTML = '<option value="">Select Team</option>';
+            
+            // Use the teams array from data.js
+            teams.forEach(team => {
+                const optionA = document.createElement('option');
+                optionA.value = team.name;
+                optionA.textContent = team.name;
+                teamASelect.appendChild(optionA);
+                
+                const optionB = document.createElement('option');
+                optionB.value = team.name;
+                optionB.textContent = team.name;
+                teamBSelect.appendChild(optionB);
+            });
         }
     </script>
 </body>

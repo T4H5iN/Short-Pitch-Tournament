@@ -132,6 +132,37 @@ function initializeTeams() {
     }).filter(id => id !== null);
 }
 
+function syncTeamsToFirebase() {
+    if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+        const teamsRef = firebase.database().ref('teams');
+        
+        // First check if teams already exist
+        teamsRef.once('value')
+            .then(snapshot => {
+                if (!snapshot.exists()) {
+                    // Write all teams to Firebase
+                    const teamsData = {};
+                    teams.forEach((team, index) => {
+                        teamsData[index] = {
+                            name: team.name,
+                            logo: team.logo,
+                            owner: team.owner,
+                            captain: team.captain
+                        };
+                    });
+                    
+                    return teamsRef.set(teamsData);
+                }
+            })
+            .then(() => console.log('Teams synced to Firebase'))
+            .catch(err => console.error('Error syncing teams:', err));
+    }
+}
+
+// Call this after initializing teams
+initializeTeams();
+syncTeamsToFirebase();
+
 const matchResults = [
     {
         match: "Match 1",
