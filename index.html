@@ -22,6 +22,175 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
     </script>
+    <style>
+        .fixtures-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .groups-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .group-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 500px;
+            border-top: 5px solid #211d4f;
+        }
+
+        .group-title {
+            font-size: 24px;
+            color: #211d4f;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .group-teams {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .group-teams li {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .group-teams li:last-child {
+            border-bottom: none;
+        }
+
+        .team-number {
+            background: #211d4f;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .stage-container {
+            margin-bottom: 50px;
+        }
+
+        .stage-title {
+            background: linear-gradient(135deg, #211d4f, #3e3b88);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .matches-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .matches-table th {
+            background: #f5f5f5;
+            color: #211d4f;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .matches-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .matches-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .match-number {
+            font-weight: bold;
+            color: #211d4f;
+        }
+
+        .match-time {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .bracket-container {
+            margin: 40px auto;
+            max-width: 900px;
+        }
+
+        .bracket-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #211d4f;
+        }
+
+        @media (max-width: 768px) {
+            .groups-container {
+                flex-direction: column;
+            }
+            
+            .group-card {
+                max-width: 100%;
+            }
+            
+            .matches-table th, 
+            .matches-table td {
+                padding: 10px;
+            }
+            
+            .stage-title {
+                font-size: 20px;
+            }
+        }
+
+        .tournament-date {
+            text-align: center;
+            background: #211d4f;
+            color: white;
+            padding: 15px;
+            margin: 20px auto 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tournament-date span {
+            color: #ffcc00;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -29,7 +198,6 @@
         <a href="teams.html">Team</a>
         <a href="players.html">Players</a>
         <a href="status.html">Match Status</a>
-        <!-- <a href="#fixture">Fixtures</a> -->
         <a href="point.html">Point Table</a>
         <a href="admin.html">ADMIN</a>
     </div>
@@ -70,10 +238,121 @@
         <a href="players.html"><p class="cards">Players</p></a>
     </div>
 
-    <!--
     <h1 id="fixture" class="section-title fixture-title">Match Fixture</h1>
-    <img src="image/fixture.png" class="fixture-image">
-    -->
+    <img src="image/ShortPitch.png" class="fixture-image">
+
+            <div class="fixtures-section">
+            <div class="groups-container">
+                <div class="group-card">
+                    <h3 class="group-title">Group A</h3>
+                    <ul class="group-teams">
+                        <li><span class="team-number">1</span> Death Over Demons</li>
+                        <li><span class="team-number">2</span> Phantom XI</li>
+                        <li><span class="team-number">3</span> Legend Hunters</li>
+                    </ul>
+                </div>
+                
+                <div class="group-card">
+                    <h3 class="group-title">Group B</h3>
+                    <ul class="group-teams">
+                        <li><span class="team-number">1</span> Team Hyper Relaaax</li>
+                        <li><span class="team-number">2</span> Team Gladiators</li>
+                        <li><span class="team-number">3</span> Alpha X Challengers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stage-container">
+                <h3 class="stage-title">Group Stage</h3>
+                <table class="matches-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="60%">Match</th>
+                            <th width="30%">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="match-number">1</td>
+                            <td>Death Over Demons vs Legend Hunters</td>
+                            <td class="match-time">9:00 AM - 9:34 AM</td>
+                        </tr>
+                        <tr>
+                            <td class="match-number">2</td>
+                            <td>Team Hyper Relaaax vs Alpha X Challengers</td>
+                            <td class="match-time">9:35 AM - 10:09 AM</td>
+                        </tr>
+                        <tr>
+                            <td class="match-number">3</td>
+                            <td>Phantom XI vs Death Over Demons</td>
+                            <td class="match-time">10:10 AM - 10:44 AM</td>
+                        </tr>
+                        <tr>
+                            <td class="match-number">4</td>
+                            <td>Team Gladiators vs Alpha X Challengers</td>
+                            <td class="match-time">10:45 AM - 11:19 AM</td>
+                        </tr>
+                        <tr>
+                            <td class="match-number">5</td>
+                            <td>Legend Hunters vs Phantom XI</td>
+                            <td class="match-time">11:20 AM - 11:54 AM</td>
+                        </tr>
+                        <tr>
+                            <td class="match-number">6</td>
+                            <td>Team Hyper Relaaax vs Team Gladiators</td>
+                            <td class="match-time">11:55 AM - 12:29 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="stage-container">
+                <h3 class="stage-title">Semi-Finals</h3>
+                <table class="matches-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="60%">Match</th>
+                            <th width="30%">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="match-number">7</td>
+                            <td>Group-A Champion vs Group-B Runners-up</td>
+                            <td class="match-time">12:30 PM - 1:10 PM</td>
+                        </tr>
+                        <tr>
+                            <td class="match-number">8</td>
+                            <td>Group-B Champion vs Group-A Runners-up</td>
+                            <td class="match-time">1:11 PM - 1:25 PM<br>+ After break (3:00 PM - 3:29 PM)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="stage-container">
+                <h3 class="stage-title">Final</h3>
+                <table class="matches-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="60%">Match</th>
+                            <th width="30%">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="match-number">9</td>
+                            <td>Match 7 Winner vs Match 8 Winner</td>
+                            <td class="match-time">3:30 PM - 4:15 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
         
     </div>
 
