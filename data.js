@@ -136,11 +136,9 @@ function syncTeamsToFirebase() {
     if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
         const teamsRef = firebase.database().ref('teams');
         
-        // First check if teams already exist
         teamsRef.once('value')
             .then(snapshot => {
                 if (!snapshot.exists()) {
-                    // Write all teams to Firebase
                     const teamsData = {};
                     teams.forEach((team, index) => {
                         teamsData[index] = {
@@ -159,7 +157,6 @@ function syncTeamsToFirebase() {
     }
 }
 
-// Call this after initializing teams
 initializeTeams();
 syncTeamsToFirebase();
 

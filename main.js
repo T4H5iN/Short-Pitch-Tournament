@@ -131,7 +131,24 @@ function initializeUI() {
                 <img src="${t.logo}" alt="${t.name || t.owner}">
                 <h3>${t.name}</h3>
             `;
-        
+
+            // --- Add winner/runner-up banners here ---
+            if (t.name === "Team hyper Relaaax" || t.name === "Team Hyper Relaaax") {
+                const banner = document.createElement('div');
+                banner.className = 'winner-banner';
+                banner.textContent = '🏆 WINNER';
+                teamCard.style.position = 'relative';
+                teamCard.appendChild(banner);
+            }
+            if (t.name === "Team Gladiators") {
+                const banner = document.createElement('div');
+                banner.className = 'runnerup-banner';
+                banner.textContent = '🥈 RUNNERS-UP';
+                teamCard.style.position = 'relative';
+                teamCard.appendChild(banner);
+            }
+            // --- End banner injection ---
+
             teamCard.addEventListener('click', () => {
                 teamModal.style.display = 'block';
                 teamLogo.src = t.logo;
@@ -184,7 +201,14 @@ if (pt) {
             snapshot.forEach(childSnapshot => {
                 pointTableData.push(childSnapshot.val());
             });
-            
+
+            pointTableData.sort((a, b) => {
+                if (b.played !== a.played) return b.played - a.played;
+                if (b.points !== a.points) return b.points - a.points;
+                return parseFloat(b.nrr) - parseFloat(a.nrr);
+            });
+
+            const winnerTeamName = "team hyper relaaax";
             pt.innerHTML = `
                 <table class="points-table">
                     <thead>
@@ -200,7 +224,7 @@ if (pt) {
                     
                     <tbody>
                         ${pointTableData.map(team => `
-                            <tr>
+                            <tr class="${team.team && team.team.trim().toLowerCase() === winnerTeamName ? 'winner-row' : ''}">
                                 <td>${team.team}</td>
                                 <td>${team.played}</td>
                                 <td>${team.won}</td>
